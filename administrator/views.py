@@ -2,6 +2,8 @@ from django.shortcuts import render, reverse, redirect
 # from client.models import Voter, Position, Candidate, Votes
 from account.models import CustomUser
 from account.forms import CustomUserForm
+
+from administrator.forms import LecturerRegistration
 # from client.forms import *
 from django.contrib import messages
 from django.http import JsonResponse, HttpResponse
@@ -34,4 +36,3 @@ def lecturerDashboard(request):
     else:
         form = LecturerRegistration()
     return render(request, 'admin/lecturer.html', {'form': form})
-    
