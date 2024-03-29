@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    {% include 'head.html' %}
+    <body>
+        <div class="app">
+            <!-- begin app-wrap -->
+            <div class="app-wrap">
+                <!-- begin pre-loader -->
+                <div class="loader">
+                    <div class="h-100 d-flex justify-content-center">
+                        <div class="align-self-center">
+                            <img src="{% static 'img/loader/loader.svg' %}" alt="loader">
+                        </div>
+                    </div>
+                </div>
+                <!-- end pre-loader -->
+                <!-- begin app-header -->
+                {% include 'topbar.html' %}
+                <div class="app-container">
+                    {% include 'sidebar.html' %}
+                    <!-- begin app-main -->
+                    <div class="app-main" id="main">
+                        {% block content %}
+    
+                        {% endblock content %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% include 'footer.html' %}
+        {% include 'scripts.html' %}
+    </body>
+</html>

@@ -1,0 +1,351 @@
+{% extends 'root.html' %}
+{% load static %}
+{% block content %}
+<div class="row crypto-currency">
+    <div class="col-lg-12">
+        <div class="card card-statistics crypto-currency">
+            <div class="card-header d-flex justify-content-between">
+                <div class="card-heading">
+                    <h4 class="card-title">Recent Orders</h4>
+                </div>
+                <div class="dropdown">
+                    <a class="p-2 export-btn" href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Export
+                    </a>
+                    <div class="dropdown-menu custom-dropdown dropdown-menu-right p-4">
+                        <a class="dropdown-item" href="#!"><i class="fa-fw fa fa-file-pdf-o pr-2"></i>Export to PDF</a>
+                        <a class="dropdown-item" href="#!"><i class="fa-fw fa fa-file-excel-o pr-2"></i>Export to CSV</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="datatable-wrapper table-responsive">
+                    <table id="datatable" class="table table-borderless crypto-table w-100">
+                        <thead class="bg-light">
+                            <tr>
+                                <th>Currency</th>
+                                <th>Balance</th>
+                                <th>Buying rate</th>
+                                <th>Current rate</th>
+                                <th>Profit/ loss</th>
+                                <th>Last Price</th>
+                                <th>Graph</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><i class="crypto crypto-act text-warning"></i></td>
+                                <td>134.45</td>
+                                <td>$12,500</td>
+                                <td>$13,624</td>
+                                <td><span class="d-block">5.487% <i class="fa fa-sort-asc text-success font-18"></i></span>
+                                </td>
+                                <td>$9,800.55</td>
+                                <td>
+                                    <div class="progress my-3" style="height: 4px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="crypto crypto-ada text-success"></i></td>
+                                <td>24.45</td>
+                                <td>$2,500</td>
+                                <td>$3,624</td>
+                                <td><span class="d-block">5.487% <i class="fa fa-sort-asc text-danger font-18"></i></span>
+                                </td>
+                                <td>$687.55 </td>
+                                <td>
+                                    <div class="progress my-3" style="height: 4px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 56%;" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="crypto crypto-adx text-dark"></i></td>
+                                <td>144.45</td>
+                                <td>$17,500</td>
+                                <td>$14,624</td>
+                                <td><span class="d-block">5.487% <i class="fa fa-sort-asc text-danger font-18"></i></span>
+                                </td>
+                                <td>$872.55 </td>
+                                <td>
+                                    <div class="progress my-3" style="height: 4px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="crypto crypto-ae text-info"></i></td>
+                                <td>342.45</td>
+                                <td>$72,500</td>
+                                <td>$83,624</td>
+                                <td><span class="d-block">5.487% <i class="fa fa-sort-asc text-success font-18"></i></span>
+                                </td>
+                                <td>$587.55 </td>
+                                <td>
+                                    <div class="progress my-3" style="height: 4px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="crypto crypto-aion text-danger"></i></td>
+                                <td>554.45</td>
+                                <td>$65,500</td>
+                                <td>$52,624</td>
+                                <td><span class="d-block">5.487% <i class="fa fa-sort-asc text-danger font-18"></i></span>
+                                </td>
+                                <td>$235.55 </td>
+                                <td>
+                                    <div class="progress my-3" style="height: 4px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 55%;" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="crypto crypto-ark text-primary"></i></td>
+                                <td>256.45</td>
+                                <td>$23,500</td>
+                                <td>$72,624</td>
+                                <td><span class="d-block">5.487% <i class="fa fa-sort-asc text-success font-18"></i></span>
+                                </td>
+                                <td>$827.55</td>
+                                <td>
+                                    <div class="progress my-3" style="height: 4px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 86%;" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="crypto crypto-bch text-cyan"></i></td>
+                                <td>892.45</td>
+                                <td>$45,500</td>
+                                <td>$43,624</td>
+                                <td><span class="d-block">5.487% <i class="fa fa-sort-asc text-success font-18"></i></span>
+                                </td>
+                                <td>$856.55</td>
+                                <td>
+                                    <div class="progress my-3" style="height: 4px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 78%;" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="crypto crypto-blcn text-pink"></i></td>
+                                <td>235.45</td>
+                                <td>$56,500</td>
+                                <td>$43,624</td>
+                                <td><span class="d-block">5.487% <i class="fa fa-sort-asc text-danger font-18"></i></span>
+                                </td>
+                                <td>$287.55</td>
+                                <td>
+                                    <div class="progress my-3" style="height: 4px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="crypto crypto-btcz text-purple"></i></td>
+                                <td>321.45</td>
+                                <td>$523,500</td>
+                                <td>$489,623</td>
+                                <td><span class="d-block">5.487% <i class="fa fa-sort-asc text-success font-18"></i></span>
+                                </td>
+                                <td>$523.55</td>
+                                <td>
+                                    <div class="progress my-3" style="height: 4px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 56%;" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="crypto crypto-burst text-primary2"></i></td>
+                                <td>289.45</td>
+                                <td>$236,852</td>
+                                <td>$123,624</td>
+                                <td><span class="d-block">5.487% <i class="fa fa-sort-asc text-danger font-18"></i></span>
+                                </td>
+                                <td>$289.55</td>
+                                <td>
+                                    <div class="progress my-3" style="height: 4px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 78%;" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="crypto crypto-cnd text-danger"></i></td>
+                                <td>185.58</td>
+                                <td>$74,500</td>
+                                <td>$65,627</td>
+                                <td><span class="d-block">5.487% <i class="fa fa-sort-asc text-success font-18"></i></span>
+                                </td>
+                                <td>$182.55</td>
+                                <td>
+                                    <div class="progress my-3" style="height: 4px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="crypto crypto-dgb text-dark"></i></td>
+                                <td>357.28</td>
+                                <td>$53,458</td>
+                                <td>$43,368</td>
+                                <td><span class="d-block">5.487% <i class="fa fa-sort-asc text-success font-18"></i></span>
+                                </td>
+                                <td>$50.55</td>
+                                <td>
+                                    <div class="progress my-3" style="height: 4px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 98%;" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="crypto crypto-dent text-primary"></i></td>
+                                <td>483.28</td>
+                                <td>$75,236</td>
+                                <td>$72,856</td>
+                                <td><span class="d-block">5.487% <i class="fa fa-sort-asc text-danger font-18"></i></span>
+                                </td>
+                                <td>$562.55</td>
+                                <td>
+                                    <div class="progress my-3" style="height: 4px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 76%;" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="crypto crypto-ella text-pink"></i></td>
+                                <td>158.42</td>
+                                <td>$56,289</td>
+                                <td>$52,563</td>
+                                <td><span class="d-block">5.487% <i class="fa fa-sort-asc text-danger font-18"></i></span>
+                                </td>
+                                <td>$87.55</td>
+                                <td>
+                                    <div class="progress my-3" style="height: 4px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 55%;" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="crypto crypto-eos text-warning"></i></td>
+                                <td>896.45</td>
+                                <td>$23,511</td>
+                                <td>$18,453</td>
+                                <td><span class="d-block">5.487% <i class="fa fa-sort-asc text-success font-18"></i></span>
+                                </td>
+                                <td>$89.55</td>
+                                <td>
+                                    <div class="progress my-3" style="height: 4px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 66%;" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="crypto crypto-jpy text-info"></i></td>
+                                <td>454.42</td>
+                                <td>$82,562</td>
+                                <td>$28,454</td>
+                                <td><span class="d-block">5.487% <i class="fa fa-sort-asc text-success font-18"></i></span>
+                                </td>
+                                <td>$289.55</td>
+                                <td>
+                                    <div class="progress my-3" style="height: 4px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 77%;" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="crypto crypto-krb text-danger"></i></td>
+                                <td>252.455</td>
+                                <td>$36,589</td>
+                                <td>$23,523</td>
+                                <td><span class="d-block">5.487% <i class="fa fa-sort-asc text-danger font-18"></i></span>
+                                </td>
+                                <td>$258.55 </td>
+                                <td>
+                                    <div class="progress my-3" style="height: 4px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 33%;" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="crypto crypto-neo text-info"></i></td>
+                                <td>64.455</td>
+                                <td>$78,502</td>
+                                <td>$72,624</td>
+                                <td><span class="d-block">5.487% <i class="fa fa-sort-asc text-danger font-18"></i></span>
+                                </td>
+                                <td>$587.55</td>
+                                <td>
+                                    <div class="progress my-3" style="height: 4px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="crypto crypto-act text-dark"></i></td>
+                                <td>562.55</td>
+                                <td>$789,456</td>
+                                <td>$758,236</td>
+                                <td><span class="d-block">5.487% <i class="fa fa-sort-asc text-success font-18"></i></span>
+                                </td>
+                                <td>$871.55</td>
+                                <td>
+                                    <div class="progress my-3" style="height: 4px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 89%;" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="crypto crypto-rads text-danger"></i></td>
+                                <td>852.45</td>
+                                <td>$35,505</td>
+                                <td>$44,624</td>
+                                <td><span class="d-block">5.487% <i class="fa fa-sort-asc text-success font-18"></i></span>
+                                </td>
+                                <td>$927.55</td>
+                                <td>
+                                    <div class="progress my-3" style="height: 4px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 67%;" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="crypto crypto-smart text-warning"></i></td>
+                                <td>372.45</td>
+                                <td>$65,500</td>
+                                <td>$85,624</td>
+                                <td><span class="d-block">5.487% <i class="fa fa-sort-asc text-danger font-18"></i></span>
+                                </td>
+                                <td>$757.55</td>
+                                <td>
+                                    <div class="progress my-3" style="height: 4px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 78%;" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="crypto crypto-zen text-success"></i></td>
+                                <td>34.562</td>
+                                <td>$28,589</td>
+                                <td>$23,624</td>
+                                <td><span class="d-block">5.487% <i class="fa fa-sort-asc text-success font-18"></i></span>
+                                </td>
+                                <td>$687.55 </td>
+                                <td>
+                                    <div class="progress my-3" style="height: 4px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 56%;" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,79 @@
+{% extends 'root.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid">
+    <!-- first row -->
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label class="control-label">Requested By</label>
+                <input type="text" class="form-control" placeholder="Your full name" />
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label class="control-label">Ushs</label>
+                <input type="number" class="form-control" placeholder="Figures" />
+            </div>
+        </div> 
+    </div>
+    <!-- Second row -->
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label class="control-label">Tel/No</label>
+                <input type="number" class="form-control" placeholder="Your Mobile No" />
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label class="control-label">Amount</label>
+                <input type="text" class="form-control" placeholder="Amount In words" />
+            </div>
+        </div> 
+    </div>
+    <!-- Third row -->
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label class="control-label">Reason</label>
+                <input type="text" class="form-control" placeholder="Enter the reason" />
+            </div>
+        </div> 
+        <div class="col-6">
+            <div class="form-group">
+                <label class="control-label">Date</label>
+                <input type="date" class="form-control" placeholder="Username" />
+            </div>
+        </div>
+    </div>
+    <!--  row Five -->
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label class="control-label">Department</label>
+                <input type="select" class="form-control" placeholder="Select Department" />
+            </div>
+        </div> 
+       
+    </div>
+    <!--  row six -->
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label class="control-label">Supervisor</label>
+                <input type="select" class="form-control" placeholder="Select Supervisor" />
+            </div>
+        </div> 
+        <div class="col-6">
+            <div class="form-group">
+                <label class="control-label">Approver</label>
+                <input type="select" class="form-control" placeholder="Select Approver" />
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success">Save</button>
+    </div>
+</div>
+{% endblock content %}
