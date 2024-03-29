@@ -1,0 +1,88 @@
+{% extends 'clientroot.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container-fluid">
+    <!-- begin row -->
+    <div class="row">
+        <div class="col-md-12 m-b-30">
+            <!-- begin page title -->
+
+            <form method="POST" action="{% url 'choices_form' %}">
+                {% csrf_token %}
+                <h1 class="text-muted">Insert Choices</h1>
+                <!-- {{ form|crispy}} -->
+
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                      <label for="inputPassword6" class="col-form-label">Current Sem</label>
+                    </div>
+                    <div class="dropdown">
+                        <select name="semester" id="semester" class="form-control">
+                            <option value="">Select Semester</option>
+                            <option value="">Semester 1</option>
+                            <option value="">Semester 2</option>
+                        </select>
+                    </div>
+                </div><br />
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                      <label for="inputPassword6" class="col-form-label">Lecturer's ID</label>
+                    </div>
+                    <div class="col-auto">
+                      <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                    </div>
+                    <div class="col-auto">
+                        <label for="inputPassword6" class="col-form-label">Name:</label>
+                    </div>
+                    <div class="col-auto">
+                        <label for="inputPassword6" class="col-form-label "><h2 class="text-muted">Karemera Charles</h2></label>
+                    </div>
+                </div><br />
+
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                      <label for="inputPassword6" class="col-form-label">Qualification</label>
+                    </div>
+                    <div class="col-auto">
+                      <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                    </div>
+                    <div class="col-auto">
+                        <label for="inputPassword6" class="col-form-label">Experience</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                    </div>
+                    <div class="col-auto">
+                        <label for="inputPassword6" class="col-form-label">Publications</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                    </div>
+                </div><br />
+                <table class="table table-hover table-bordered">
+                    <thead>
+                      <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Course Unit</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Python Programming</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>OOP Using Java</td>
+                        <td>@fat</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                <button type="submit" class="btn btn-secondary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

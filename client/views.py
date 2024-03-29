@@ -27,7 +27,7 @@ def client(request):
     return render(request, 'client.html')
 
 
-def requisition_phase1(request):
+def choices_form(request):
     if request.method == 'POST':
         form = RequisitionPhase1Form(request.POST)
         if form.is_valid():
@@ -36,10 +36,10 @@ def requisition_phase1(request):
             requisition.requester = form.cleaned_data['requester']
             requisition.phase = 1
             requisition.save()
-            return redirect(reverse('adminDashboard'))
+            return redirect(reverse('staffDashboard'))
     else:
         form = RequisitionPhase1Form()
-    return render(request, 'client/req.html', {'form': form})
+    return render(request, 'client/choices_form.html', {'form': form})
 
 def requisition_phase2(request):
     if request.method == 'POST':

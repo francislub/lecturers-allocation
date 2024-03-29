@@ -6,7 +6,7 @@ class RequisitionPhase1Form(forms.ModelForm):
     
     class Meta:
         model = Requisition
-        fields = ['amount', 'reason', 'department', 'requester', 'request_date']  # Include request date field
+        fields = ['id', 'name', 'qualification', 'experience', 'publication', 'semester']  # Include request date field
 
 class RequisitionPhase2Form(forms.ModelForm):
     supervisor_date = forms.DateTimeField(label='Supervisor Approval Date', required=False)  # Add supervisor date field
