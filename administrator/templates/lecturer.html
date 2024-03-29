@@ -1,0 +1,111 @@
+{% extends 'root.html' %}
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container-fluid">
+    <!-- begin row -->
+    <div class="row">
+        <div class="col-md-12 m-b-30">
+            <!-- begin page title -->
+
+            <form method="POST" action="{% url 'lecturer' %}">
+                {% csrf_token %}
+                
+                {% comment %} {{ form|crispy}} {% endcomment %}
+                <form>
+                    <h2>Lecturer's Details</h2>
+                    <div class="row g-3 align-items-center">
+                        <div class="col-4">
+                            <label for="exampleInputid" class="form-label">Lecturer's ID</label>
+                            <input type="text" class="form-control" name="id" id="id" aria-describedby="idHelp">
+                        </div>
+                        <div class="col-4">
+                            <label for="exampleInputName" class="form-label">Lecturer's Name</label>
+                            <input type="text" class="form-control" name="lecturername" id="exampleInputName">
+                        </div>
+                        <div class="col-4">
+                            <label for="qualification" class="form-label">Qualification</label>
+                            <select class="form-control" name="qualification" id="qualification">
+                              <option value="">Select Qualification</option>
+                              <option value="Bachelors">Degree</option>
+                              <option value="Masters">Degree - Masters</option>
+                              <option value="PhD">Degree - Masters - PhD</option>
+                              </select>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="row g-3 align-items-center">
+
+                        <div class="col-6">
+                            <label for="publication" class="form-label">Qualification</label>
+                            <select class="form-control" name="publication" id="publication">
+                              <option value="">Select Publication</option>
+                              <option value="None">None </option>
+                              <option value="p1">1 to 2 Papers</option>
+                              <option value="p3">3 to 4 Papers</option>
+                              <option value="p3">5 to 6 Papers</option>
+                              <option value="p3">7 to 8 Papers</option>
+                              <option value="p3">9 and above</option>
+                              </select>
+                        </div>
+                        <div class="col-6">
+                            <label for="semester" class="form-label">Semester</label>
+                            <select class="form-control" name="semester" id="semester">
+                              <option value="">Select Semester</option>
+                              <option value="F">First Semester</option>
+                              <option value="S">Second Semester</option>
+                            </select>
+                        </div>
+                        
+                    </div>
+
+                </form>
+                <br><br>
+
+                <ul class="dropdown-menu">
+                    <li><span class="dropdown-item-text">Dropdown item text</span></li>
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  </ul>
+
+                <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Course Units</th>
+                        <th scope="col">FeedBack</th>
+                        <th scope="col">Experience</th>
+                        <th scope="col">Profectional Certificate</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td >Larry the Bird</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

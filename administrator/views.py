@@ -18,3 +18,22 @@ def reportStatus(request):
 
 def requisition_phase1(request):
     return render(request, "admin/req.html")
+
+def requistition_phase1(request):
+    return render(request, "admin/req.html")
+
+def lecturerDashboard(request):
+    if request.method == 'POST':
+        form = LecturerRegistration(request.POST)
+        if form.is_valid():
+            lecturer = form.save(commit=False)
+            lecturer.id = form.cleaned_data['id']
+            lecturer.lecturername = form.cleaned_data['lecturername']
+            lecturer.qualification = form.cleaned_data['qualification']
+            lecturer.publication = form.cleaned_data['publication']
+            lecturer.semester = form.cleaned_data['semester']
+            lecturer.save()
+            return redirect(reverse('adminDashboard'))
+    else:
+        form = LecturerRegistration()
+    return render(request, 'admin/lecturer.html', {'form': form})
