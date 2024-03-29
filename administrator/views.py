@@ -15,3 +15,6 @@ def reqStatus(request):
 
 def reportStatus(request):
     return render(request, "admin/reportStatus.html")
+
+def requisition_phase1(request):
+    return render(request, "admin/req.html")
