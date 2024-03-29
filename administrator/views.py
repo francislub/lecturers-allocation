@@ -34,3 +34,4 @@ def lecturerDashboard(request):
     else:
         form = LecturerRegistration()
     return render(request, 'admin/lecturer.html', {'form': form})
+    
