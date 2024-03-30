@@ -25,7 +25,7 @@ def reportStatus(request):
     return render(request, "admin/reportStatus.html")
 
 def requistition_phase1(request):
-    return render(request, "admin/req.html")
+    return render(request, "req.html")
 
 def lecturerDa(request):
     lecturers = Lecturer.objects.all()
