@@ -18,8 +18,8 @@ def reqStatus(request):
 def reportStatus(request):
     return render(request, "admin/reportStatus.html")
 
-#def lecturerDashboard(request):
-#    return render(request, "admin/lecturer.html")
+def requistition_phase1(request):
+    return render(request, "admin/req.html")
 
 def lecturerDashboard(request):
     if request.method == 'POST':
