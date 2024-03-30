@@ -1,0 +1,43 @@
+{% extends 'root.html' %}
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container-fluid">
+    <!-- begin row -->
+    <div class="row">
+        <div class="col-md-12 m-b-30">
+            <!-- begin page title -->
+
+            <form method="POST" action="{% url 'courseview' %}">
+                {% csrf_token %}
+                
+                {% comment %} {{ form|crispy}} {% endcomment %}
+                {% comment %} <form> {% endcomment %}
+                    <h2>Course Details</h2>
+                    <div class="row g-3 align-items-center">
+                        <div class="col-4">
+                            <label for="exampleInputid" class="form-label">Course ID</label>
+                            <input type="text" class="form-control" name="id" id="id" aria-describedby="idHelp">
+                        </div>
+                        <div class="col-4">
+                            <label for="exampleInputName" class="form-label">Course Name</label>
+                            <input type="text" class="form-control" name="coursename" id="exampleInputName">
+                        </div>
+                        <div class="col-4">
+                            <label for="semester" class="form-label">Semester</label>
+                            <select class="form-control" name="semester" id="semester">
+                              <option value="">Select Semester</option>
+                              <option value="F">First Semester</option>
+                              <option value="S">Second Semester</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br><br>
+                    
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a class="btn btn-lg btn-primary" href="{% url 'courseview' %}" role="button">Close</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
