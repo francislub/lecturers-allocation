@@ -8,102 +8,48 @@
         <div class="col-md-12 m-b-30">
             <!-- begin page title -->
 
-            <form method="POST" action="{% url 'lecturer' %}">
+            <form method="POST" action="{% url 'lectview' %}">
                 {% csrf_token %}
                 
                 {% comment %} {{ form|crispy}} {% endcomment %}
-                <form>
-                    <h2>Lecturer's Details</h2>
-                    <div class="row g-3 align-items-center">
-                        <div class="col-4">
-                            <label for="exampleInputid" class="form-label">Lecturer's ID</label>
-                            <input type="text" class="form-control" name="id" id="id" aria-describedby="idHelp">
-                        </div>
-                        <div class="col-4">
-                            <label for="exampleInputName" class="form-label">Lecturer's Name</label>
-                            <input type="text" class="form-control" name="lecturername" id="exampleInputName">
-                        </div>
-                        <div class="col-4">
-                            <label for="qualification" class="form-label">Qualification</label>
-                            <select class="form-control" name="qualification" id="qualification">
-                              <option value="">Select Qualification</option>
-                              <option value="Bachelors">Degree</option>
-                              <option value="Masters">Degree - Masters</option>
-                              <option value="PhD">Degree - Masters - PhD</option>
-                              </select>
-                        </div>
-                    </div>
-                    <br><br>
-                    <div class="row g-3 align-items-center">
-
-                        <div class="col-6">
-                            <label for="publication" class="form-label">Qualification</label>
-                            <select class="form-control" name="publication" id="publication">
-                              <option value="">Select Publication</option>
-                              <option value="None">None </option>
-                              <option value="p1">1 to 2 Papers</option>
-                              <option value="p3">3 to 4 Papers</option>
-                              <option value="p3">5 to 6 Papers</option>
-                              <option value="p3">7 to 8 Papers</option>
-                              <option value="p3">9 and above</option>
-                              </select>
-                        </div>
-                        <div class="col-6">
-                            <label for="semester" class="form-label">Semester</label>
-                            <select class="form-control" name="semester" id="semester">
-                              <option value="">Select Semester</option>
-                              <option value="F">First Semester</option>
-                              <option value="S">Second Semester</option>
-                            </select>
-                        </div>
-                        
-                    </div>
-
-                </form>
-                <br><br>
-
-                <ul class="dropdown-menu">
-                    <li><span class="dropdown-item-text">Dropdown item text</span></li>
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                  </ul>
-
-                <table class="table table-bordered">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Course Units</th>
-                        <th scope="col">FeedBack</th>
-                        <th scope="col">Experience</th>
-                        <th scope="col">Profectional Certificate</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td >Larry the Bird</td>
-                        <td>@twitter</td>
-                        <td>@twitter</td>
-                        <td>@twitter</td>
-                      </tr>
-                    </tbody>
+                <div class="row">
+                  <div class="col-10">
+                    <h2>View Lecturer's Details</h2>
+                  </div>
+                  <div class="col-2">
+                    <a class="btn btn-lg btn-primary" href="{% url 'lectview' %}" role="button">Add Lecturer</a>
+                  </div>
+              </div>
+                <div class="display_table">
+                    <table class='table table-bordered'>
+                            <tr>
+                              <th>Lecturer's ID</th>
+                              <th>Lecturer's Name</th>
+                              <th>Qualification</th>
+                              {% comment %} <th>Publication</th> {% endcomment %}
+                              <th>Semester</th>
+                              <th>Actions</th>
+                            </tr>
+                            {% for lecturer in lecturers %}
+                            <tr>
+                            <td>{{ lecturer.id }}</td>
+                            <td>{{ lecturer.lecturername }}</td>
+                            <td>{{ lecturer.qualification }}</td>
+                            {% comment %} <td>{{ lecturer.publication }}</td> {% endcomment %}
+                            <td>{{ lecturer.semester }}</td>
+                            <td>
+                                <!-- Add your action buttons here -->
+                                {% comment %} <a href="{% url 'delete_course' course.id %}" class="btn btn-danger">Delete</a> {% endcomment %}
+                                <a href="" class="btn btn-primary">View</a>
+                                <a href="" class="btn btn-danger">Delete</a>
+                            </td>
+                           </tr>
+                      {% endfor %}
+                    </table>
+            </form>
+                
                   </table>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                
             </form>
         </div>
     </div>

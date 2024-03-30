@@ -1,0 +1,55 @@
+{% extends 'root.html' %}
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container-fluid">
+    <!-- begin row -->
+    <div class="row">
+        <div class="col-md-12 m-b-30">
+            <!-- begin page title -->
+
+            <form method="POST" action="{% url 'lectview' %}">
+                {% csrf_token %}
+                
+                {% comment %} {{ form|crispy}} {% endcomment %}
+                <div class="row">
+                    <div class="col-10">
+                        <h2>View Course Details</h2>
+                    </div>
+                    <div class="col-2">
+                        <a class="btn btn-lg btn-primary" href="{% url 'course' %}" role="button">Add Course Units</a>
+                    </div>
+                </div>
+                <div class="display_table">
+                  <table class='table table-bordered'>
+                      <tr>
+                          <th>Course ID</th>
+                          <th>Course Name</th>
+                          <th>Semester</th>
+                          <th>Actions</th>
+                      </tr>
+                      {% for course in courses %}
+                      <tr>
+                          <td>{{ course.id }}</td>
+                          <td>{{ course.coursename }}</td>
+                          <td>{{ course.semester }}</td>
+                          <td>
+                              <!-- Add your action buttons here -->
+                              {% comment %} <a href="{% url 'delete_course' course.id %}" class="btn btn-danger">Delete</a> {% endcomment %}
+                              <a href="" class="btn btn-danger">Delete</a>
+                              <a href="" class="btn btn-primary">Update</a>
+                            </td>
+                      </tr>
+                      {% endfor %}
+                  </table>
+              </div>
+              
+            </form>
+                
+                  </table>
+                
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

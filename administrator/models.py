@@ -3,6 +3,13 @@ from django.core.validators import RegexValidator
 
 # Create your models here.
 #from administrator.models import CustomUser, Department
+class Course(models.Model):
+    # Existing fields
+    
+    id = models.CharField(primary_key=True, max_length=100)
+    coursename = models.CharField(max_length=300, null=True, blank=True)
+    semester = models.CharField(max_length=255, null=True, blank=True)
+    
 SEMESTER_CHOICES = (
     ('F', 'First Semester'),
     ('S', 'Second Semester'),
@@ -30,7 +37,7 @@ class Lecturer(models.Model):
     LECTERER_NAME_REGEX = r'^[A-Za-z\s]+$'  # Allows letters and spaces
     lecturername = models.CharField(max_length=200, validators=[RegexValidator(LECTERER_NAME_REGEX, 'Only letters and spaces allowed for lecturer name')], null=True, blank=True)
     qualification = models.CharField(max_length=255,choices=Qualification_CHOICES, null=True, blank=True)
-    publication = models.CharField(max_length=255 , choices=publication_CHOICES , null=True, blank=True)
+    #publication = models.CharField(max_length=255 , choices=publication_CHOICES , null=True, blank=True)
     semester = models.CharField(max_length=10, choices=SEMESTER_CHOICES, null=True, blank=True)
     
     
