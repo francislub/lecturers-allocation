@@ -8,10 +8,10 @@
             <li><a href="{% url "requisition_phase1" %}" aria-expanded="false"><i class="nav-icon ti ti-email"></i><span class="nav-title">Requisition</span></a> </li>
             {% comment %} <li><a href="app-chat.html" aria-expanded="false"><i class="nav-icon ti ti-user"></i><span class="nav-title">Business Office</span></a> </li> {% endcomment %}
             <li>
-                <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="nav-icon ti ti-bag"></i> <span class="nav-title">Department</span></a>
+                <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="nav-icon ti ti-bag"></i> <span class="nav-title">Register</span></a>
                 <ul aria-expanded="false">
-                    <li> <a href="ui-alerts.html">Requisitions</a> </li>
-                    <li> <a href="ui-accordions.html">Completed</a> </li>
+                    <li> <a href="{% url "lecturer" %}">Lecturers</a> </li>
+                    <li> <a href="ui-accordions.html">Course Units</a> </li>
                     <li> <a href="ui-accordions.html">Reports</a> </li>
                 </ul>
             </li>
