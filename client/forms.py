@@ -1,23 +1,40 @@
 from django import forms
-from .models import Requisition
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Row, Column, Field, Submit
+from .models import Lecturer
 
-class RequisitionPhase1Form(forms.ModelForm):
-    request_date = forms.DateTimeField(label='Request Date', required=False)  # Add request date field
-    
-    class Meta:
-        model = Requisition
-        fields = ['id', 'name', 'qualification', 'experience', 'publication', 'semester']  # Include request date field
+class LecturerForm(forms.ModelForm):
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     self.helper = FormHelper()
+    #     self.helper.layout = Layout(
+    #         Row(
+    #             Column(css_class='col-md-3'),
+    #             Field('semester', css_class='form-control selectpicker'),  # Use custom class
+    #             Column(css_class='col-md-3'),
+    #             Field('id', css_class='form-control'),
+    #         ),
+    #         Row(
+    #             Column(css_class='col-md-3'),
+    #             Field('name', css_class='form-control'),
+    #             Column(css_class='col-md-3'),
+    #             Field('qualification', css_class='form-control'),
+    #         ),
+    #         Row(
+    #             Column(css_class='col-md-3'),
+    #             Field('experience', css_control='form-control'),
+    #             Column(css_class='col-md-3'),
+    #             Field('publication', css_class='form-control'),
+    #         ),
+    #         Submit('submit', 'Submit', css_class='btn btn-secondary'),
+    #     )
+    # id = forms.CharField()
+    # name = forms.CharField()
+    # qualification = forms.CharField()
+    # experience = forms.CharField()
+    # publication = forms.CharField()
+    # semester = forms.CharField()
 
-class RequisitionPhase2Form(forms.ModelForm):
-    supervisor_date = forms.DateTimeField(label='Supervisor Approval Date', required=False)  # Add supervisor date field
-    
     class Meta:
-        model = Requisition
-        fields = ['supervisor', 'supervisor_comment', 'supervisor_date']  # Include supervisor date field
-
-class RequisitionPhase3Form(forms.ModelForm):
-    approver_date = forms.DateTimeField(label='Approver Approval Date', required=False)  # Add approver date field
-    
-    class Meta:
-        model = Requisition
-        fields = ['approver', 'charge_to_account', 'approver_date']  # Include approver date field
+        model = Lecturer
+        exclude = ("user",)

@@ -8,79 +8,68 @@
             <!-- begin page title -->
 
             <form method="POST" action="{% url 'choices_form' %}">
-                {% csrf_token %}
-                <h1 class="text-muted">Insert Choices</h1>
-                <!-- {{ form|crispy}} -->
+              {% csrf_token %}
+              <h2 class="text-muted">Lecturer Details</h2>
+              <!-- {{ form|crispy}} -->
 
-                <div class="row g-3 align-items-center">
-                    <div class="col-auto">
-                      <label for="inputPassword6" class="col-form-label">Current Sem</label>
-                    </div>
-                    <div class="dropdown">
-                        <select name="semester" id="semester" class="form-control">
-                            <option value="">Select Semester</option>
-                            <option value="">Semester 1</option>
-                            <option value="">Semester 2</option>
-                        </select>
-                    </div>
-                </div><br />
-                <div class="row g-3 align-items-center">
-                    <div class="col-auto">
-                      <label for="inputPassword6" class="col-form-label">Lecturer's ID</label>
-                    </div>
-                    <div class="col-auto">
-                      <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-                    </div>
-                    <div class="col-auto">
-                        <label for="inputPassword6" class="col-form-label">Name:</label>
-                    </div>
-                    <div class="col-auto">
-                        <label for="inputPassword6" class="col-form-label "><h2 class="text-muted">Karemera Charles</h2></label>
-                    </div>
-                </div><br />
+               <div class="row g-3 align-items-center">
+                  <div class="col-3">
+                    <label for="semester" class="col-form-label">Select Semester</label>
+                    <select name="semester" id="semester" class="form-control">
+                      <option value="select">Select Semester</option>
+                      <option value="semester1">Semester 1</option>
+                      <option value="semester2">Semester 2</option>
+                  </select>
+                  </div>
+                  <div class="col-3">
+                    <label for="lecturerid" class="col-form-label">Lecturer's ID</label>
+                    <input type="text" id="lecturerid" class="form-control">
+                  </div>
+              </div><br />
+              <div class="row g-3 align-items-center">
+                  
+                  <div class="col-3">
+                      <label for="name" class="col-form-label">Name:</label><br />
+                      <input type="text" name="name" id="name" class="form-control" 
+                      value="Karemera Charles">
+                  </div>
+                  <div class="col-3">
+                    <label for="qualification" class="col-form-label">Qualification:</label><br />
+                    <input type="text" name="qualification" id="qualification" class="form-control">
+                </div>
+                <div class="col-3">
+                  <label for="experience" class="col-form-label">Experience:</label><br />
+                  <input type="text" name="experience" id="experience" class="form-control">
+              </div>
+              <div class="col-3">
+                <label for="publication" class="col-form-label">Publications:</label><br />
+                <input type="text" name="publication" id="publication" class="form-control">
+              </div>
+              </div><br /> 
 
-                <div class="row g-3 align-items-center">
-                    <div class="col-auto">
-                      <label for="inputPassword6" class="col-form-label">Qualification</label>
-                    </div>
-                    <div class="col-auto">
-                      <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-                    </div>
-                    <div class="col-auto">
-                        <label for="inputPassword6" class="col-form-label">Experience</label>
-                    </div>
-                    <div class="col-auto">
-                        <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-                    </div>
-                    <div class="col-auto">
-                        <label for="inputPassword6" class="col-form-label">Publications</label>
-                    </div>
-                    <div class="col-auto">
-                        <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-                    </div>
-                </div><br />
-                <table class="table table-hover table-bordered">
-                    <thead>
-                      <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Course Unit</th>
-                        <th scope="col">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Python Programming</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>OOP Using Java</td>
-                        <td>@fat</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                <button type="submit" class="btn btn-secondary">Submit</button>
+              <h2 class="text-muted">Arrange Choices</h2>
+              <table class="table table-hover table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Course Unit</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Python Programming</td>
+                    <td>Arrange</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>OOP Using Java</td>
+                    <td>Arrange</td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="submit" class="btn btn-secondary">Submit</button>
             </form>
         </div>
     </div>
