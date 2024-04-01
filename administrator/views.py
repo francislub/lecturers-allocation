@@ -1,8 +1,10 @@
 from django.shortcuts import render, reverse, redirect, get_object_or_404
+from .models import Course
 # from client.models import Voter, Position, Candidate, Votes
 #from account.models import Course
 from administrator.models import Course,Lecturer
 from account.forms import CustomUserForm
+
 
 from administrator.forms import LecturerRegistration, CourseRegistration
 # from client.forms import *
@@ -34,6 +36,15 @@ def lecturerDa(request):
 def courseDa(request):
     courses = Course.objects.all()
     return render(request, "admin/courseview.html", {'courses': courses})
+
+
+def delete_course(request, course_id):
+    course = get_object_or_404(Course, pk=course_id)
+    if request.method == 'POST':
+        course.delete()
+        return redirect('home')  # Redirect to the desired page after deletion
+    # Optionally, you can render a confirmation page for deletion
+    return render(request, 'admin/confirm_delete.html', {'course': course})
 
 def lecturerDashboard(request):
     if request.method == 'POST':

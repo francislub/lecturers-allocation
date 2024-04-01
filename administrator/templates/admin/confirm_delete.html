@@ -1,0 +1,15 @@
+{% extends 'root.html' %}
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container-fluid">
+    <!-- confirm_delete.html -->
+    <h1>Confirm Deletion</h1>
+    <p>Are you sure you want to delete "{{ course.name }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'courseview' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock content %}
