@@ -13,20 +13,25 @@
               <!-- {{ form|crispy}} -->
 
                <div class="row g-3 align-items-center">
+                {% for field in form %}
                   <div class="col-3">
-                    <label for="semester" class="col-form-label">Select Semester</label>
+                    <!-- <label for="semester" class="col-form-label">Select Semester</label>
                     <select name="semester" id="semester" class="form-control">
                       <option value="select">Select Semester</option>
                       <option value="semester1">Semester 1</option>
                       <option value="semester2">Semester 2</option>
-                  </select>
+                    </select> -->
+                    {{ field.errors }}
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
                   </div>
-                  <div class="col-3">
+                  <!-- <div class="col-3">
                     <label for="lecturerid" class="col-form-label">Lecturer's ID</label>
                     <input type="text" id="lecturerid" class="form-control">
-                  </div>
+                  </div> -->
+                  {% endfor %}
               </div><br />
-              <div class="row g-3 align-items-center">
+              <!-- <div class="row g-3 align-items-center">
                   
                   <div class="col-3">
                       <label for="name" class="col-form-label">Name:</label><br />
@@ -45,7 +50,7 @@
                 <label for="publication" class="col-form-label">Publications:</label><br />
                 <input type="text" name="publication" id="publication" class="form-control">
               </div>
-              </div><br /> 
+              </div><br />  -->
 
               <h2 class="text-muted">Arrange Choices</h2>
               <table class="table table-hover table-bordered">
