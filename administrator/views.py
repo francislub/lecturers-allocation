@@ -65,3 +65,18 @@ def courseDashboard(request):
     else:
         form = CourseRegistration()
     return render(request, 'admin/course.html', {'form': form})
+
+def choicesDashboard(request):
+    if request.method == 'POST':
+        form = CourseRegistration(request.POST)
+        if form.is_valid():
+            course = form.save(commit=False)
+            course.id = form.cleaned_data['id']
+            course.coursename = form.cleaned_data['coursename']
+            course.semester = form.cleaned_data['semester']
+            course.save()
+            # form.save()
+            return redirect(reverse('adminDashboard'))
+    else:
+        form = CourseRegistration()
+    return render(request, 'admin/choices.html', {'form': form})
