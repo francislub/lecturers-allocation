@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from .forms import LecturerForm
+from django.contrib import messages
 
 # Create your views here.
 
@@ -28,13 +29,13 @@ def client(request):
 
 
 def choices_form(request):
+    form = LecturerForm(request.POST)
     if request.method == 'POST':
-        form = LecturerForm(request.POST)
-        
         if form.is_valid():
             form.save()
             return redirect(reverse('staffDashboard'))
     else:
+        messages.error(request, "Something went wrong! Please try again")
         form = LecturerForm()
     return render(request, 'client/choices_form.html', {'form': form})
 
