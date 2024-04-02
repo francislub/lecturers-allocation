@@ -70,6 +70,10 @@ def lecturerDashboard(request):
     return render(request, 'admin/lectview.html', {'form': form})
 
 def courseDashboard(request):
+    courses = Course.objects.all()  # Query all courses from the database
+    return render(request, 'admin/course.html', {'courses': courses})
+
+def courseDashboard(request):
     if request.method == 'POST':
         form = CourseRegistration(request.POST)
         if form.is_valid():
