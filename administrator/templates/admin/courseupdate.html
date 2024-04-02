@@ -1,0 +1,39 @@
+{% extends 'root.html' %}
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container-fluid">
+    <!-- begin row -->
+    <div class="row">
+        <div class="col-md-12 m-b-30">
+            <!-- begin page title -->
+
+            <form method="POST" action="">
+                {% csrf_token %}
+                <h2>Update Course Details</h2>
+                <div class="row g-3 align-items-center">
+                    <div class="col-4">
+                        <label for="id" class="form-label">Course ID</label>
+                        <input type="text" class="form-control" name="id" id="id" aria-describedby="idHelp" value="{{ form.instance.id }}">
+                    </div>
+                    <div class="col-4">
+                        <label for="coursename" class="form-label">Course Name</label>
+                        <input type="text" class="form-control" name="coursename" id="coursename" value="{{ form.instance.coursename }}">
+                    </div>
+                    <div class="col-4">
+                        <label for="semester" class="form-label">Semester</label>
+                        <select class="form-control" name="semester" id="semester">
+                            <option value="">Select Semester</option>
+                            <option value="First Semester" {% if form.instance.semester == 'First Semester' %} selected {% endif %}>First Semester</option>
+                            <option value="Second Semester" {% if form.instance.semester == 'Second Semester' %} selected {% endif %}>Second Semester</option>
+                        </select>
+                    </div>
+                </div>
+                <br><br>
+                <button type="submit" class="btn btn-primary">Update</button>
+                <a class="btn btn-lg btn-secondary" href="{% url 'courseview' %}" role="button">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

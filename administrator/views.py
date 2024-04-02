@@ -63,8 +63,8 @@ def lecturerDashboard(request):
             lecturer.qualification = form.cleaned_data['qualification']
             lecturer.publication = form.cleaned_data['publication']
             lecturer.semester = form.cleaned_data['semester']
-            lecturer.save()
-            return redirect(reverse('adminDashboard'))
+            form.save()
+            return redirect(reverse('lecturer'))
     else:
         form = LecturerRegistration()
     return render(request, 'admin/lectview.html', {'form': form})
@@ -78,11 +78,22 @@ def courseDashboard(request):
             course.coursename = form.cleaned_data['coursename']
             course.semester = form.cleaned_data['semester']
             course.save()
-            # form.save()
-            return redirect(reverse('adminDashboard'))
+            form.save()
+            return redirect(reverse('courseview'))
     else:
         form = CourseRegistration()
     return render(request, 'admin/course.html', {'form': form})
+
+def update_course(request, course_id):
+    course = Course.objects.get(pk=course_id)
+    if request.method == 'POST':
+        form = CourseRegistration(request.POST, instance=course)
+        if form.is_valid():
+            form.save()
+            return redirect('courseview')  # Assuming 'courseview' is the URL name for displaying course details
+    else:
+        form = CourseRegistration(instance=course)
+    return render(request, 'admin/courseupdate.html', {'form': form})
 
 def choicesDashboard(request):
     if request.method == 'POST':

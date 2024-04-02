@@ -35,7 +35,7 @@
                           <td>{{ course.semester }}</td>
                           <td>
                               <!-- Add your action buttons here -->
-                              <a href="" class="btn btn-warning">Update</a>
+                              <a href="{% url 'update_course' course.id %}" class="btn btn-warning">Update</a>
                               <a href="{% url 'delete_course' course.id %}" class="btn btn-danger">Delete</a>
                             </td>
                       </tr>

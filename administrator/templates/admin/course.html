@@ -8,7 +8,7 @@
         <div class="col-md-12 m-b-30">
             <!-- begin page title -->
 
-            <form method="POST" action="{% url 'courseview' %}">
+            <form method="POST" action="">
                 {% csrf_token %}
                 
                 {% comment %} {{ form|crispy}} {% endcomment %}
@@ -27,14 +27,14 @@
                             <label for="semester" class="form-label">Semester</label>
                             <select class="form-control" name="semester" id="semester">
                               <option value="">Select Semester</option>
-                              <option value="F">First Semester</option>
-                              <option value="S">Second Semester</option>
+                              <option value="First Semester">First Semester</option>
+                              <option value="Second Semester">Second Semester</option>
                             </select>
                         </div>
                     </div>
                     <br><br>
                     
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit"  class="btn btn-primary">Submit</button>
                 <a class="btn btn-lg btn-secondary" href="{% url 'courseview' %}" role="button">Cancel</a>
             </form>
         </div>

@@ -8,11 +8,11 @@
         <div class="col-md-12 m-b-30">
             <!-- begin page title -->
 
-            <form method="POST" action="{% url 'lecturer' %}">
+            <form method="POST" action="">
                 {% csrf_token %}
                 
                 {% comment %} {{ form|crispy}} {% endcomment %}
-                <form>
+                {% comment %} <form> {% endcomment %}
                     <h2>Lecturer's Details</h2>
                     <div class="row g-3 align-items-center">
                         <div class="col-4">
@@ -53,15 +53,15 @@
                               <label for="semester" class="form-label">Semester</label>
                               <select class="form-control" name="semester" id="semester">
                                   <option value="">Select Semester</option>
-                                  <option value="F">First Semester</option>
-                                  <option value="S">Second Semester</option>
+                                  <option value="First Semester">First Semester</option>
+                                  <option value="Second Semester">Second Semester</option>
                               </select>
                           </div>
                         
                         
                     </div>
 
-                </form>
+                {% comment %} </form> {% endcomment %}
                 <br><br>
                 <div class="row">
                   <div class="col-md-12">
@@ -85,37 +85,37 @@
           </div>
           <div class="col-12">
             <button type="submit" class="btn btn-primary">Submit</button>
-           <a class="btn btn-lg btn-primary" href="{% url 'lecturer' %}" role="button">Close</a>
+           <a class="btn btn-lg btn-secondary" href="{% url 'lecturer' %}" role="button">Cancel</a>
 
           </div>
           
-          <!-- JavaScript to dynamically update the table -->
-          <script>
-              document.getElementById("semester").addEventListener("change", function() {
-                  var selectedSemester = this.value;
-                  var tableBody = document.getElementById("course_units_body");
-                  tableBody.innerHTML = ""; // Clear existing rows
-                  
-                  {% for course in courses %}
-                      {% if course.semester == "F" %}
-                          var semester = "First Semester";
-                      {% elif course.semester == "S" %}
-                          var semester = "Second Semester";
-                      {% endif %}
-                      if (semester === selectedSemester) {
-                          var newRow = "<tr>";
-                          newRow += "<td>{{ forloop.counter }}</td>";
-                          newRow += "<td>{{ course.coursename }}</td>";
-                          newRow += "<td><input type='text' name='feedback[]'></td>";
-                          newRow += "<td><select name='experience[]'><option value='2'>2</option><option value='4'>4</option><option value='5'>5</option><option value='6'>6</option></select></td>";
-                          newRow += "<td><input type='text' name='certificate[]'></td>";
-                          newRow += "<td><select name='publication[]'><option value='2'>2</option><option value='4'>4</option><option value='5'>5</option><option value='10'>10</option></select></td>";
-                          newRow += "</tr>";
-                          tableBody.innerHTML += newRow;
-                      }
-                  {% endfor %}
-              });
-          </script>
+                <!-- JavaScript to dynamically update the table -->
+                <script>
+                    document.getElementById("semester").addEventListener("change", function() {
+                        var selectedSemester = this.value;
+                        var tableBody = document.getElementById("course_units_body");
+                        tableBody.innerHTML = ""; // Clear existing rows
+                        
+                        {% for course in courses %}
+                            {% if course.semester == "First Semester" %}
+                                var semester = "First Semester";
+                            {% elif course.semester == "Second Semester" %}
+                                var semester = "Second Semester";
+                            {% endif %}
+                            if (semester === selectedSemester) {
+                                var newRow = "<tr>";
+                                newRow += "<td>{{ course.id }}</td>";
+                                newRow += "<td>{{ course.coursename }}</td>";
+                                newRow += "<td><input type='text' name='feedback[]'></td>";
+                                newRow += "<td><select name='experience[]'><option value='2'>2</option><option value='4'>4</option><option value='5'>5</option><option value='6'>6</option></select></td>";
+                                newRow += "<td><input type='text' name='certificate[]'></td>";
+                                newRow += "<td><select name='publication[]'><option value='2'>2</option><option value='4'>4</option><option value='5'>5</option><option value='10'>10</option></select></td>";
+                                newRow += "</tr>";
+                                tableBody.innerHTML += newRow;
+                            }
+                        {% endfor %}
+                    });
+                </script>
             </form>
         </div>
     </div>
