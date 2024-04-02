@@ -42,7 +42,7 @@ def delete_course(request, course_id):
     course = get_object_or_404(Course, pk=course_id)
     if request.method == 'POST':
         course.delete()
-        return redirect('home')  # Redirect to the desired page after deletion
+        return redirect('courseview')  # Redirect to the desired page after deletion
     # Optionally, you can render a confirmation page for deletion
     return render(request, 'admin/confirm_delete.html', {'course': course})
 

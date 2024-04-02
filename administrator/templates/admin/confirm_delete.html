@@ -5,7 +5,7 @@
 <div class="container-fluid">
     <!-- confirm_delete.html -->
     <h1>Confirm Deletion</h1>
-    <p>Are you sure you want to delete "{{ course.name }}"?</p>
+    <p>Are you sure you want to delete {{ course.coursename }}?</p>
     <form method="post">
         {% csrf_token %}
         <button type="submit" class="btn btn-danger">Delete</button>
