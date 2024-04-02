@@ -37,6 +37,13 @@ def courseDa(request):
     courses = Course.objects.all()
     return render(request, "admin/courseview.html", {'courses': courses})
 
+def delete_lecturer(request, lecturer_id):
+    lecturer = get_object_or_404(Lecturer, pk=lecturer_id)
+    if request.method == 'POST':
+        lecturer.delete()
+        return redirect('lecturer')  # Redirect to the desired page after deletion
+    # Optionally, render a confirmation page for deletion
+    return render(request, 'admin/confirm_delete_lecturer.html', {'lecturer': lecturer})
 
 def delete_course(request, course_id):
     course = get_object_or_404(Course, pk=course_id)
