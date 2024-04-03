@@ -1,5 +1,6 @@
 {% extends 'root.html' %}
 {% load static %}
+
 {% block content %}
 {% load crispy_forms_tags %}
 <div class="container-fluid">
@@ -67,40 +68,36 @@
             </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-primary">Submit</button>
-            <a class="btn btn-lg btn-secondary" href="{% url 'lecturer' %}" role="button">Cancel</a>
+                <a class="btn btn-lg btn-secondary" href="{% url 'lecturer' %}" role="button">Cancel</a>
             </div>
            </form>
-            <!-- JavaScript to dynamically update the table -->
-            <script>
-                document.getElementById("semester").addEventListener("change", function() {
-                    var selectedSemester = this.value;
-                    var tableBody = document.getElementById("course_units_body");
-                    tableBody.innerHTML = ""; // Clear existing rows
-            
-                    var semester; // Define the variable outside the loop
-            
-                    {% for course in courses %}
-                        {% if course.semester == "First Semester" %}
-                            semester = "First Semester"; // Assign the value without var keyword
-                        {% elif course.semester == "Second Semester" %}
-                            semester = "Second Semester"; // Assign the value without var keyword
-                        {% endif %}
-                        // Check if semester matches the selected semester
-                        if (semester === selectedSemester) {
-                            var newRow = "<tr>";
-                            newRow += "<td>{{ course.id }}</td>";
-                            newRow += "<td>{{ course.coursename }}</td>";
-                            newRow += "<td><input type='text' name='feedback[]'></td>";
-                            newRow += "<td><select name='experience[]'><option value='2'>2</option><option value='4'>4</option><option value='5'>5</option><option value='6'>6</option></select></td>";
-                            newRow += "<td><input type='text' name='certificate[]'></td>";
-                            newRow += "<td><select name='publication[]'><option value='2'>2</option><option value='4'>4</option><option value='5'>5</option><option value='10'>10</option></select></td>";
-                            newRow += "</tr>";
-                            tableBody.innerHTML += newRow;
-                        }
-                    {% endfor %}
-                });
-            </script>            
         </div>
     </div>
 </div>
+<script>
+    document.getElementById("semester").addEventListener("change", function() {
+        var selectedSemester = this.value;
+        var tableBody = document.getElementById("course_units_body");
+        tableBody.innerHTML = ""; // Clear existing rows
+    
+        fetch(`/get-courses/?semester=${selectedSemester}`)
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(course => {
+                    var newRow = "<tr>";
+                    newRow += "<td>" + course.id + "</td>";
+                    newRow += "<td>" + course.coursename + "</td>";
+                    newRow += "<td><input type='text' name='feedback[]'></td>";
+                    newRow += "<td><select name='experience[]'><option value='2'>2</option><option value='4'>4</option><option value='5'>5</option><option value='6'>6</option></select></td>";
+                    newRow += "<td><input type='text' name='certificate[]'></td>";
+                    newRow += "<td><select name='publication[]'><option value='2'>2</option><option value='4'>4</option><option value='5'>5</option><option value='10'>10</option></select></td>";
+                    newRow += "</tr>";
+                    tableBody.innerHTML += newRow;
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching courses:', error);
+            });
+    });
+</script>
 {% endblock content %}

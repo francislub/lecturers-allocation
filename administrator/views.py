@@ -73,6 +73,12 @@ def courseDashboard(request):
     courses = Course.objects.all()  # Query all courses from the database
     return render(request, 'admin/course.html', {'courses': courses})
 
+def get_courses(request):
+    semester = request.GET.get('semester')
+    courses = Course.objects.filter(semester=semester)
+    data = [{'id': course.id, 'coursename': course.name} for course in courses]
+    return JsonResponse(data, safe=False)
+
 def courseDashboard(request):
     if request.method == 'POST':
         form = CourseRegistration(request.POST)
