@@ -55,45 +55,29 @@
                                   <th scope="col">Publication</th>
                               </tr>
                           </thead>
-                          <tbody id="course_units_body"> <!-- Add this tbody element -->
-                            <!-- Table rows will be dynamically added here -->
-                          </tbody>
+                          <tbody id="course_units_body">
+                            {% for course in courses %}
+                                <tr>
+                                    <td>{{ course.id }}</td>
+                                    <td>{{ course.coursename }}</td>
+                                    <td>{{ course.feedback }}</td>
+                                    <td>{{ course.experience }}</td>
+                                    <td>{{ course.professional_certificate }}</td>
+                                    <td>{{ course.publication }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>                                     
                       </table>
                   </div>
               </div>
             </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-primary">Submit</button>
+                <a class="btn btn-lg btn-secondary" href="{% url 'lecturersemester' %}" role="button">Back</a>
                 <a class="btn btn-lg btn-secondary" href="{% url 'lecturer' %}" role="button">Cancel</a>
             </div>
            </form>
         </div>
     </div>
 </div>
-<script>
-    document.getElementById("semester").addEventListener("change", function() {
-        var selectedSemester = this.value;
-        var tableBody = document.getElementById("course_units_body");
-        tableBody.innerHTML = ""; // Clear existing rows
-    
-        fetch(`/get-courses/?semester=${selectedSemester}`)
-            .then(response => response.json())
-            .then(data => {
-                data.forEach(course => {
-                    var newRow = "<tr>";
-                    newRow += "<td>" + course.id + "</td>";
-                    newRow += "<td>" + course.coursename + "</td>";
-                    newRow += "<td><input type='text' name='feedback[]'></td>";
-                    newRow += "<td><select name='experience[]'><option value='2'>2</option><option value='4'>4</option><option value='5'>5</option><option value='6'>6</option></select></td>";
-                    newRow += "<td><input type='text' name='certificate[]'></td>";
-                    newRow += "<td><select name='publication[]'><option value='2'>2</option><option value='4'>4</option><option value='5'>5</option><option value='10'>10</option></select></td>";
-                    newRow += "</tr>";
-                    tableBody.innerHTML += newRow;
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching courses:', error);
-            });
-    });
-</script>
 {% endblock content %}
