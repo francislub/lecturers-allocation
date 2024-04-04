@@ -4,7 +4,7 @@
 {% load crispy_forms_tags %}
 <div class="container-fluid">
     <!-- begin row -->
-    <div class="row">
+    {% comment %} <div class="row"> {% endcomment %}
         <div class="col-md-12 m-b-30">
             <!-- begin page title -->
 
@@ -13,41 +13,76 @@
                 
                 {% comment %} {{ form|crispy}} {% endcomment %}
                 <div class="row">
-                  <div class="col-10">
-                    <h2>View Lecturer's Details</h2>
-                  </div>
-                  <div class="col-2">
-                    <a class="btn btn-lg btn-primary" href="{% url 'lectview' %}" role="button">Add Lecturer</a>
-                  </div>
-              </div>
-                <div class="display_table">
-                    <table class='table table-bordered'>
-                            <tr>
-                              <th>Lecturer's ID</th>
-                              <th>Lecturer's Name</th>
-                              <th>Qualification</th>
-                              {% comment %} <th>Publication</th> {% endcomment %}
-                              <th>Semester</th>
-                              <th>Actions</th>
+                    <div class="col-10">
+                      <h2>View Lecturer's Details</h2>
+                    </div>
+                    <div class="col-2">
+                      <a class="btn  btn-primary" data-toggle="modal" data-target="#approvalModal" role="button">Add Lecturer</a>
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="display_table">
+                      <table class='table table-bordered'>
+                              <tr>
+                                <th>Lecturer's ID</th>
+                                <th>Lecturer's Name</th>
+                                <th>Qualification</th>
+                                {% comment %} <th>Publication</th> {% endcomment %}
+                                <th>Semester</th>
+                                <th>Actions</th>
+                              </tr>
+                              {% for lecturer in lecturers %}
+                              <tr>
+                              <td>{{ lecturer.id }}</td>
+                              <td>{{ lecturer.lecturername }}</td>
+                              <td>{{ lecturer.qualification }}</td>
+                              {% comment %} <td>{{ lecturer.publication }}</td> {% endcomment %}
+                              <td>{{ lecturer.semester }}</td>
+                              <td>
+                                  <!-- Add your action buttons here -->
+                                  <a href="" class="btn btn-primary">View</a>
+                                  <a href="" class="btn btn-warning">Update</a>
+                                  <a href="{% url 'delete_lecturer' lecturer.id %}" class="btn btn-danger">Delete</a>
+                                  
+                              </td>
                             </tr>
-                            {% for lecturer in lecturers %}
-                            <tr>
-                            <td>{{ lecturer.id }}</td>
-                            <td>{{ lecturer.lecturername }}</td>
-                            <td>{{ lecturer.qualification }}</td>
-                            {% comment %} <td>{{ lecturer.publication }}</td> {% endcomment %}
-                            <td>{{ lecturer.semester }}</td>
-                            <td>
-                                <!-- Add your action buttons here -->
-                                <a href="" class="btn btn-primary">View</a>
-                                <a href="" class="btn btn-warning">Update</a>
-                                <a href="{% url 'delete_lecturer' lecturer.id %}" class="btn btn-danger">Delete</a>
-                                
-                            </td>
-                           </tr>
-                      {% endfor %}
-                    </table>
+                        {% endfor %}
+                      </table>
+                </div>
+                <div class="modal fade" id="approvalModal{{ requisition.id }}" tabindex="-1" role="dialog" aria-labelledby="approvalModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title" id="approvalModalLabel">Adding New Lecturer</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                          </div>
+                          <div class="modal-body" >
+                              
+                          </div>
+                          <div class="modal-body" id="approvalModalBody">
+                              <form id="approvalForm" method="POST" action="">
+                                  {% csrf_token %}
+                                  {{ form|crispy}}
+                                  <div class="form-group">
+                                    <label for="semester" class="form-label">Semester</label>
+                                    <select class="form-control" name="semester" id="semester">
+                                        <option value="">Select Semester</option>
+                                        <option value="First Semester">First Semester</option>
+                                        <option value="Second Semester">Second Semester</option>
+                                    </select>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      <button type="button" class="btn btn-primary" onclick="validateForm()">Continue</button>
+                                      {% comment %} <button type="button" class="btn btn-primary" href="{% url 'lecturer' %}" >Continue</button>  {% endcomment %}
+                                  </div>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
             </form>
+
                 
                   </table>
                 
@@ -55,4 +90,17 @@
         </div>
     </div>
 </div>
+<script>
+    function validateForm() {
+      var semester = document.getElementById("semester").value;
+      if (semester === "") {
+        alert("Please select a semester");
+      } else {
+        document.getElementById("approvalForm").submit();
+        // Redirect to lecturerDashboard view
+        window.location.href = "{% url 'lectview' %}";
+                    
+      }
+    }
+  </script>
 {% endblock content %}
