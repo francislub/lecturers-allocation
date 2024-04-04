@@ -1,0 +1,27 @@
+{% extends 'root.html' %}
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container-fluid">
+    <div class="modal-body" id="approvalModalBody">
+        <form id="approvalForm" method="POST" action="">
+            {% csrf_token %}
+            {{ form|crispy}}
+            {% comment %} <div class="form-group">
+                <label for="semester" class="form-label">Semester</label>
+                {{ form.semester }}
+            </div> {% endcomment %}
+            <div class="modal-footer">
+                <a class="btn btn-lg btn-secondary" href="{% url 'lecturer' %}" role="button">Cancel</a>
+                <button type="submit" class="btn btn-primary">Continue</button>
+            </div>
+        </form>
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endif %}
+    </div>
+    
+</div>
+{% endblock content %}

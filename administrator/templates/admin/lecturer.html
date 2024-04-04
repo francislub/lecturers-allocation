@@ -17,7 +17,7 @@
                       <h2>View Lecturer's Details</h2>
                     </div>
                     <div class="col-2">
-                      <a class="btn  btn-primary" data-toggle="modal" data-target="#approvalModal" role="button">Add Lecturer</a>
+                      <a class="btn  btn-primary"  href="{% url "lecturersemester" %}"  role="button">Add Lecturer</a>
                     </div>
                 </div>
                 <div class="row">
@@ -49,38 +49,6 @@
                         {% endfor %}
                       </table>
                 </div>
-                <div class="modal fade" id="approvalModal{{ requisition.id }}" tabindex="-1" role="dialog" aria-labelledby="approvalModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                          <div class="modal-header">
-                              <h5 class="modal-title" id="approvalModalLabel">Adding New Lecturer</h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                              </button>
-                          </div>
-                          <div class="modal-body" >
-                              
-                          </div>
-                          <div class="modal-body" id="approvalModalBody">
-                              <form id="approvalForm" method="POST" action="">
-                                  {% csrf_token %}
-                                  {{ form|crispy}}
-                                  <div class="form-group">
-                                    <label for="semester" class="form-label">Semester</label>
-                                    <select class="form-control" name="semester" id="semester">
-                                        <option value="">Select Semester</option>
-                                        <option value="First Semester">First Semester</option>
-                                        <option value="Second Semester">Second Semester</option>
-                                    </select>
-                                  <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                      <button type="button" class="btn btn-primary" onclick="validateForm()">Continue</button>
-                                      {% comment %} <button type="button" class="btn btn-primary" href="{% url 'lecturer' %}" >Continue</button>  {% endcomment %}
-                                  </div>
-                              </form>
-                          </div>
-                      </div>
-                  </div>
             </form>
 
                 
@@ -90,17 +58,4 @@
         </div>
     </div>
 </div>
-<script>
-    function validateForm() {
-      var semester = document.getElementById("semester").value;
-      if (semester === "") {
-        alert("Please select a semester");
-      } else {
-        document.getElementById("approvalForm").submit();
-        // Redirect to lecturerDashboard view
-        window.location.href = "{% url 'lectview' %}";
-                    
-      }
-    }
-  </script>
 {% endblock content %}

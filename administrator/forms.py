@@ -14,6 +14,9 @@ class CourseRegistration(forms.ModelForm):
     class Meta:
         model = Course
         fields = ['id', 'coursename', 'semester']  # Include request date field
+        
+class SemesterForm(forms.Form):
+    semester = forms.ChoiceField(choices=[('', 'Select Semester'), ('First Semester', 'First Semester'), ('Second Semester', 'Second Semester')])
 
 #class RequisitionPhase2Form(forms.ModelForm):
 #    supervisor_date = forms.DateTimeField(label='Supervisor Approval Date', required=False)  # Add supervisor date field

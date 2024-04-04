@@ -4,6 +4,7 @@ from .models import Course
 #from account.models import Course
 from administrator.models import Course,Lecturer
 from account.forms import CustomUserForm
+from .forms import SemesterForm
 
 
 from administrator.forms import LecturerRegistration, CourseRegistration
@@ -119,3 +120,15 @@ def choicesDashboard(request):
     else:
         form = CourseRegistration()
     return render(request, 'admin/choices.html', {'form': form})
+def approval_form(request):
+    if request.method == 'POST':
+        form = SemesterForm(request.POST)
+        if form.is_valid():
+            semester = form.cleaned_data['semester']
+            if semester:
+                return redirect('lectview')  # Redirect to lectview if semester is selected
+            else:
+                return render(request, 'admin/lecturersemester.html', {'form': form, 'error': 'Please select a semester.'})
+    else:
+        form = SemesterForm()
+    return render(request, 'admin/lecturersemester.html', {'form': form})
