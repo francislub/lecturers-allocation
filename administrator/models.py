@@ -10,24 +10,6 @@ class Course(models.Model):
     coursename = models.CharField(max_length=300, null=True, blank=True)
     semester = models.CharField(max_length=255, null=True, blank=True)
     
-SEMESTER_CHOICES = (
-    ('F', 'First Semester'),
-    ('S', 'Second Semester'),
-)
-Qualification_CHOICES = (
-    ('D', 'Degree'),
-    ('DM', 'Degree - Masters'),
-    ('DMP', 'Degree - Masters - PhD'),
-)
-publication_CHOICES = (
-    ('N', 'None '),
-    ('1', '1 to 2 Papers'),
-    ('3', '3 to 4 Papers'),
-    ('5', '5 to 6 Papers'),
-    ('7', '7 to 8 Papers'),
-    ('9', '9 and above'),
-)
-    
 class Lecturer(models.Model):
     # Existing fields
     id = models.CharField(primary_key=True, max_length=100)

@@ -8,8 +8,8 @@
             {% csrf_token %}
             {{ form|crispy }}
             <div class="modal-footer">
-                <a class="btn btn-lg btn-secondary" href="{% url 'lecturer' %}" role="button">Cancel</a>
                 <button type="submit" class="btn btn-primary">Continue</button>
+                <a class="btn btn-lg btn-secondary" href="{% url 'lecturer' %}" role="button">Cancel</a>
             </div>
         </form>         
         {% if error %}
