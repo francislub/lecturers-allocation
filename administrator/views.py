@@ -56,33 +56,33 @@ def delete_course(request, course_id):
 
 def lecturerDashboard(request):
     if request.method == 'POST':
-        # courses = Course.
         form = LecturerRegistration(request.POST)
         if form.is_valid():
-            lecturer = form.save(commit=False)
-            lecturer.id = form.cleaned_data['id']
-            lecturer.lecturername = form.cleaned_data['lecturername']
-            lecturer.qualification = form.cleaned_data['qualification']
-            lecturer.semester = form.cleaned_data['semester']
-            # lecturer.coursename = form.cleaned_data['coursename']
-            lecturer.feedback = form.cleaned_data['feedback']
-            lecturer.experience = form.cleaned_data['experience']
-            lecturer.professional = form.cleaned_data['professional']
-            lecturer.publication = form.cleaned_data['publication']
-            lecturer.save()  # Save the basic details first
-            form.save()
-            
-            # Check if lecturer object is not None
-            if lecturer is not None:
-                # Process and save the course units
-                course_units_data = request.POST.getlist('coursename')  # Assuming 'course_units' is the name of the field in the form
-                for course_unit in course_units_data:
-                    lecturer.courseunits.add(course_unit)
-            
+            # Get lecturer's information from the form
+            lecturer_data = {
+                'id': form.cleaned_data['id'],
+                'lecturername': form.cleaned_data['lecturername'],
+                'qualification': form.cleaned_data['qualification'],
+                'semester': form.cleaned_data['semester'],
+                'courseunits': form.cleaned_data['courseunits'],
+                'feedback': form.cleaned_data['feedback'],
+                'experience': form.cleaned_data['experience'],
+                'professional': form.cleaned_data['professional'],
+                'publication': form.cleaned_data['publication']
+            }
+
+            # Process and save course units along with lecturer's information
+            course_units_data = form.cleaned_data['courseunits']  # Get selected course units
+            for course_unit in course_units_data:
+                lecturer = Lecturer(**lecturer_data)  # Create a new lecturer instance with the same data
+                lecturer.save()  # Save the basic details first
+                lecturer.courseunits.add(course_unit)  # Add the course unit to the lecturer
+                form.save()
             return redirect('lecturer')  # Redirect to lecturer view after saving
     else:
         form = LecturerRegistration()
     return render(request, 'admin/lectview.html', {'form': form})
+
 
 def courseDashboard(request):
     courses = Course.objects.all()  # Query all courses from the database
