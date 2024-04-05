@@ -20,7 +20,7 @@
                       <a class="btn  btn-primary"  href="{% url "lecturersemester" %}"  role="button">Add Lecturer</a>
                     </div>
                 </div>
-                <div class="row">
+                {% comment %} <div class="row"> {% endcomment %}
                   <div class="display_table">
                       <table class='table table-bordered'>
                               <tr>
@@ -28,7 +28,7 @@
                                 <th>Lecturer's Name</th>
                                 <th>Qualification</th>
                                 {% comment %} <th>Publication</th> {% endcomment %}
-                                <th>Semester</th>
+                                {% comment %} <th>Semester</th> {% endcomment %}
                                 <th>Actions</th>
                               </tr>
                               {% for lecturer in lecturers %}
@@ -37,7 +37,7 @@
                               <td>{{ lecturer.lecturername }}</td>
                               <td>{{ lecturer.qualification }}</td>
                               {% comment %} <td>{{ lecturer.publication }}</td> {% endcomment %}
-                              <td>{{ lecturer.semester }}</td>
+                              {% comment %} <td>{{ lecturer.semester }}</td> {% endcomment %}
                               <td>
                                   <!-- Add your action buttons here -->
                                   <a href="" class="btn btn-primary">View</a>
@@ -48,7 +48,7 @@
                             </tr>
                         {% endfor %}
                       </table>
-                </div>
+                {% comment %} </div> {% endcomment %}
             </form>
 
                 

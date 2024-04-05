@@ -27,9 +27,9 @@
                             <label for="qualification" class="form-label">Qualification</label>
                             <select class="form-control" name="qualification" id="qualification">
                               <option value="">Select Qualification</option>
-                              <option value="Bachelors">Degree</option>
-                              <option value="Masters">Degree - Masters</option>
-                              <option value="PhD">Degree - Masters - PhD</option>
+                              <option value="Degree">Degree</option>
+                              <option value="Degree - Masters">Degree - Masters</option>
+                              <option value="Degree - Masters - PhD">Degree - Masters - PhD</option>
                               </select>
                         </div>
                     </div>
@@ -40,42 +40,44 @@
                             
                         </div> 
                     </div>
-                {% comment %} </form> {% endcomment %}
-                <br><br>
-                <div class="row">
-                  <div class="col-md-12">
-                      <table class="table table-bordered">
-                          <thead>
-                              <tr>
-                                  <th scope="col">#</th>
-                                  <th scope="col">Course Units</th>
-                                  <th scope="col">Feedback</th>
-                                  <th scope="col">Experience</th>
-                                  <th scope="col">Professional Certificate</th>
-                                  <th scope="col">Publication</th>
-                              </tr>
-                          </thead>
-                          <tbody id="course_units_body">
-                            {% for course in courses %}
+                    {% comment %} </form> {% endcomment %}
+                    <br><br>
+                    <div class="row">
+                    <div class="col-md-12">
+                        <h2>Courses for {{ semester }}</h2>
+                        <table class="table table-bordered">
+                            <thead>
                                 <tr>
-                                    <td>{{ course.id }}</td>
-                                    <td>{{ course.coursename }}</td>
-                                    <td>{{ course.feedback }}</td>
-                                    <td>{{ course.experience }}</td>
-                                    <td>{{ course.professional_certificate }}</td>
-                                    <td>{{ course.publication }}</td>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Course Units</th>
+                                    <th scope="col">Feedback</th>
+                                    <th scope="col">Experience</th>
+                                    <th scope="col">Professional Certificate</th>
+                                    <th scope="col">Publication</th>
                                 </tr>
-                            {% endfor %}
-                        </tbody>                                     
-                      </table>
-                  </div>
-              </div>
+                            </thead>
+                            <tbody id="course_units_body">
+                                {% for course in courses %}
+                                    <tr>
+                                        <td>{{ course.id }}</td>
+                                        <td>{{ course.coursename }}</td>
+                                        {% comment %} <td>{{ course.feedback }}</td>
+                                        <td>{{ course.experience }}</td>
+                                        <td>{{ course.professional_certificate }}</td>
+                                        <td>{{ course.publication }}</td> {% endcomment %}
+                                    </tr>
+                                {% endfor %}
+                            </tbody>                                     
+                        </table>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a class="btn btn-lg btn-secondary" href="{% url 'lecturersemester' %}" role="button">Back</a>
+                    <a class="btn btn-lg btn-secondary" href="{% url 'lecturer' %}" role="button">Cancel</a>
+                </div>
             </div>
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <a class="btn btn-lg btn-secondary" href="{% url 'lecturersemester' %}" role="button">Back</a>
-                <a class="btn btn-lg btn-secondary" href="{% url 'lecturer' %}" role="button">Cancel</a>
-            </div>
+            
            </form>
         </div>
     </div>

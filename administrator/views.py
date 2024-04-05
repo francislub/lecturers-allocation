@@ -62,8 +62,9 @@ def lecturerDashboard(request):
             lecturer.id = form.cleaned_data['id']
             lecturer.lecturername = form.cleaned_data['lecturername']
             lecturer.qualification = form.cleaned_data['qualification']
-            lecturer.publication = form.cleaned_data['publication']
-            lecturer.semester = form.cleaned_data['semester']
+            # lecturer.publication = form.cleaned_data['publication']
+            # lecturer.semester = form.cleaned_data['semester']
+            lecturer.save()
             form.save()
             return redirect(reverse('lecturer'))
     else:
@@ -137,10 +138,9 @@ def lectview(request):
     if request.method == 'POST':
         semester = request.POST.get('semester')
         if semester:
-            # Retrieve course units for the selected semester
             courses = Course.objects.filter(semester=semester)
             return render(request, 'lectview.html', {'courses': courses, 'semester': semester})
         else:
-            return render(request, 'lectview.html', {'error': 'Please select a semester.'})
+            return render(request, 'lecturer.html', {'error': 'Please select a semester.'})
     else:
-        return render(request, 'lectview.html')  # Handle GET request if needed
+        return render(request, 'lecturer.html')  # Render the form initially

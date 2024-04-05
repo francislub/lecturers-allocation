@@ -26,17 +26,16 @@
                               <th>Lecturer's ID</th>
                               <th>Lecturer's Name</th>
                               <th>Qualification</th>
-                              <th>Publication</th>
-                              <th>Semester</th>
+                              {% comment %} <th>Publication</th> {% endcomment %}
                               <th>Actions</th>
                             </tr>
                             {% for lecturer in lecturers %}
                             <tr>
                             <td>{{ lecturer.id }}</td>
-                            <td>{{ lecturer.lecturername }}</td>
+                            <td>{{ lecturer.name }}</td>
                             <td>{{ lecturer.qualification }}</td>
                             {% comment %} <td>{{ lecturer.publication }}</td> {% endcomment %}
-                            <td>{{ lecturer.semester }}</td>
+                            {% comment %} <td>{{ lecturer.semester }}</td> {% endcomment %}
                             <td>
                                 <!-- Add your action buttons here -->
                                 {% comment %} <a href="{% url 'delete_course' course.id %}" class="btn btn-danger">Delete</a> {% endcomment %}

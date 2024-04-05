@@ -6,12 +6,12 @@
     <div class="modal-body" id="approvalModalBody">
         <form id="approvalForm" method="POST" action="{% url 'lectview' %}">
             {% csrf_token %}
-            {{ form|crispy}}
+            {{ form|crispy }}
             <div class="modal-footer">
                 <a class="btn btn-lg btn-secondary" href="{% url 'lecturer' %}" role="button">Cancel</a>
                 <button type="submit" class="btn btn-primary">Continue</button>
             </div>
-        </form>        
+        </form>         
         {% if error %}
             <div class="alert alert-danger" role="alert">
                 {{ error }}
