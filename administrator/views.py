@@ -132,3 +132,15 @@ def approval_form(request):
     else:
         form = SemesterForm()
     return render(request, 'admin/lecturersemester.html', {'form': form})
+
+def lectview(request):
+    if request.method == 'POST':
+        semester = request.POST.get('semester')
+        if semester:
+            # Retrieve course units for the selected semester
+            courses = Course.objects.filter(semester=semester)
+            return render(request, 'lectview.html', {'courses': courses, 'semester': semester})
+        else:
+            return render(request, 'lectview.html', {'error': 'Please select a semester.'})
+    else:
+        return render(request, 'lectview.html')  # Handle GET request if needed
