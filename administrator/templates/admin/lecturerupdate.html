@@ -1,0 +1,85 @@
+{% extends 'root.html' %}
+{% load static %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container-fluid">
+    <!-- begin row -->
+    <div class="row">
+        <div class="col-md-12 m-b-30">
+            <!-- begin page title -->
+            <form method="POST" action="">
+                {% csrf_token %}
+                
+                {% comment %} {{ form|crispy}} {% endcomment %}
+                {% comment %} <form> {% endcomment %}
+                    <h2>Update Lecturer's Details</h2>
+                    <div class="row g-3 align-items-center">
+                        <div class="col-4">
+                            <label for="exampleInputid" class="form-label">Lecturer's ID</label>
+                            <input type="text" class="form-control" name="id" id="id" aria-describedby="idHelp" value="{{ form.instance.id }}">
+                        </div>
+                        <div class="col-4">
+                            <label for="exampleInputName" class="form-label">Lecturer's Name</label>
+                            <input type="text" class="form-control" name="lecturername" id="exampleInputName" value="{{ form.instance.lecturername }}">
+                        </div>
+                        <div class="col-4">
+                            <label for="qualification" class="form-label">Qualification</label>
+                            <select class="form-control" name="qualification" id="qualification">
+                              <option value="">Select Qualification</option>
+                              <option value="Degree" {% if form.instance.qualification == 'Degree' %} selected {% endif %}>Degree</option>
+                              <option value="Degree - Masters" {% if form.instance.qualification == 'Degree - Masters' %} selected {% endif %}>Degree - Masters</option>
+                              <option value="Degree - Masters - PhD" {% if form.instance.qualification == 'Degree - Masters - PhD' %} selected {% endif %}>Degree - Masters - PhD</option>
+                              </select>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="row g-3 align-items-center">
+                        
+                        <div>
+                            
+                        </div> 
+                    </div>
+                    {% comment %} </form> {% endcomment %}
+                    <br><br>
+                    <div class="row">
+                    <div class="col-md-12">
+                        <h2>Courses for {{ semester }}</h2>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Course Units</th>
+                                    <th scope="col">Feedback</th>
+                                    <th scope="col">Experience</th>
+                                    <th scope="col">Professional Certificate</th>
+                                    <th scope="col">Publication</th>
+                                </tr>
+                            </thead>
+                            <tbody id="course_units_body">
+                                {% for course in courses %}
+                                    <tr>
+                                        <td>{{ course.id }}</td>
+                                        <td>{{ course.coursename }}</td>
+                                        {% comment %} <td>{{ course.feedback }}</td>
+                                        <td>{{ course.experience }}</td>
+                                        <td>{{ course.professional_certificate }}</td>
+                                        <td>{{ course.publication }}</td> {% endcomment %}
+                                    </tr>
+                                {% endfor %}
+                            </tbody>                                     
+                        </table>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a class="btn btn-lg btn-secondary" href="{% url 'lecturersemester' %}" role="button">Back</a>
+                    <a class="btn btn-lg btn-secondary" href="{% url 'lecturer' %}" role="button">Cancel</a>
+                </div>
+            </div>
+            
+           </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

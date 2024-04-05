@@ -4,7 +4,7 @@
 {% load crispy_forms_tags %}
 <div class="container-fluid">
     <div class="modal-body" id="approvalModalBody">
-        <form id="approvalForm" method="POST" action="{% url 'lectview' %}">
+        <form id="approvalForm" method="POST" action="{% url 'lecturersemester' %}">
             {% csrf_token %}
             {{ form|crispy }}
             <div class="modal-footer">

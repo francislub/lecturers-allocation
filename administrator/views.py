@@ -107,6 +107,17 @@ def update_course(request, course_id):
         form = CourseRegistration(instance=course)
     return render(request, 'admin/courseupdate.html', {'form': form})
 
+def update_lecturer(request, lecturer_id):
+    lecturer = Lecturer.objects.get(pk=lecturer_id)
+    if request.method == 'POST':
+        form = LecturerRegistration(request.POST, instance=lecturer)
+        if form.is_valid():
+            form.save()
+            return redirect('lecturer')  # Assuming 'courseview' is the URL name for displaying course details
+    else:
+        form = LecturerRegistration(instance=lecturer)
+    return render(request, 'admin/lecturerupdate.html', {'form': form})
+
 def choicesDashboard(request):
     if request.method == 'POST':
         form = CourseRegistration(request.POST)
@@ -122,25 +133,24 @@ def choicesDashboard(request):
         form = CourseRegistration()
     return render(request, 'admin/choices.html', {'form': form})
 def approval_form(request):
+    # form = SemesterForm(request.POST)
+    semester = request.POST.get('semester')
+    courses = Course.objects.filter(semester=semester)
     if request.method == 'POST':
-        form = SemesterForm(request.POST)
-        if form.is_valid():
-            semester = form.cleaned_data['semester']
-            if semester:
-                return redirect('lectview')  # Redirect to lectview if semester is selected
-            else:
-                return render(request, 'admin/lecturersemester.html', {'form': form, 'error': 'Please select a semester.'})
+        if semester:
+            return render(request, 'admin/lectview.html', {'courses': courses, 'semester':semester})
+        else:
+            return render(request, 'lecturer.html', {'error': 'Please select a semester.'})
+        
+        # if form.is_valid():
+        #     semester = form.cleaned_data['semester']
+        #     if semester:
+        #         return redirect('lectview')  # Redirect to lectview if semester is selected
+        #     else:
+        #         return render(request, 'admin/lecturersemester.html', {'form': form, 'error': 'Please select a semester.'})
     else:
         form = SemesterForm()
     return render(request, 'admin/lecturersemester.html', {'form': form})
 
 def lectview(request):
-    if request.method == 'POST':
-        semester = request.POST.get('semester')
-        if semester:
-            courses = Course.objects.filter(semester=semester)
-            return render(request, 'lectview.html', {'courses': courses, 'semester': semester})
-        else:
-            return render(request, 'lecturer.html', {'error': 'Please select a semester.'})
-    else:
-        return render(request, 'lecturer.html')  # Render the form initially
+    return render(request, 'lecturer.html')  # Render the form initially
