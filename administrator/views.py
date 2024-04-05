@@ -56,17 +56,30 @@ def delete_course(request, course_id):
 
 def lecturerDashboard(request):
     if request.method == 'POST':
+        # courses = Course.
         form = LecturerRegistration(request.POST)
         if form.is_valid():
             lecturer = form.save(commit=False)
             lecturer.id = form.cleaned_data['id']
             lecturer.lecturername = form.cleaned_data['lecturername']
             lecturer.qualification = form.cleaned_data['qualification']
-            # lecturer.publication = form.cleaned_data['publication']
-            # lecturer.semester = form.cleaned_data['semester']
-            lecturer.save()
+            lecturer.semester = form.cleaned_data['semester']
+            # lecturer.coursename = form.cleaned_data['coursename']
+            lecturer.feedback = form.cleaned_data['feedback']
+            lecturer.experience = form.cleaned_data['experience']
+            lecturer.professional = form.cleaned_data['professional']
+            lecturer.publication = form.cleaned_data['publication']
+            lecturer.save()  # Save the basic details first
             form.save()
-            return redirect(reverse('lecturer'))
+            
+            # Check if lecturer object is not None
+            if lecturer is not None:
+                # Process and save the course units
+                course_units_data = request.POST.getlist('coursename')  # Assuming 'course_units' is the name of the field in the form
+                for course_unit in course_units_data:
+                    lecturer.courseunits.add(course_unit)
+            
+            return redirect('lecturer')  # Redirect to lecturer view after saving
     else:
         form = LecturerRegistration()
     return render(request, 'admin/lectview.html', {'form': form})

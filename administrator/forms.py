@@ -6,7 +6,7 @@ class LecturerRegistration(forms.ModelForm):
     
     class Meta:
         model = Lecturer
-        fields = ['id', 'lecturername', 'qualification']  # Include request date field
+        fields = ['id', 'lecturername', 'qualification','semester','courseunits','feedback','experience','professional','publication']  # Include request date field
 
 class CourseRegistration(forms.ModelForm):
     #request_date = forms.DateTimeField(label='Request Date', required=False)  # Add request date field
