@@ -7,6 +7,18 @@
         <form id="approvalForm" method="POST" action="{% url 'lecturersemester' %}">
             {% csrf_token %}
             {{ form|crispy }}
+            {% comment %} <div class="row">
+                <div class="col-1">
+                    <label for="semester" class="form-label">Semester</label>
+                </div>
+                <div class="col-4">
+                    <select class="form-control" name="semester" id="semester">
+                    <option value="">Select Semester</option>
+                    <option value="First Semester">First Semester</option>
+                    <option value="Second Semester">Second Semester</option>
+                    </select>
+                </div>
+            </div> {% endcomment %}
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">Continue</button>
                 <a class="btn btn-lg btn-secondary" href="{% url 'lecturer' %}" role="button">Cancel</a>

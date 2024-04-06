@@ -15,7 +15,7 @@ class Lecturer(models.Model):
     id = models.CharField(primary_key=True, max_length=100)
     lecturername = models.CharField(max_length=200, null=True, blank=True)
     qualification = models.CharField(max_length=255, null=True, blank=True)
-    semester = models.CharField(max_length=10, null=True, blank=True)
+    semester = models.CharField(max_length=255, null=True, blank=True)
     courseunits = models.CharField(max_length=255, null=True, blank=True)
     feedback = models.CharField(max_length=255, null=True, blank=True)
     experience = models.CharField(max_length=255, null=True, blank=True)

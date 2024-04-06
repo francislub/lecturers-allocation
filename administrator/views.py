@@ -63,18 +63,20 @@ def lecturerDashboard(request):
             lecturer.id = form.cleaned_data['id']
             lecturer.lecturername = form.cleaned_data['lecturername']
             lecturer.qualification = form.cleaned_data['qualification']
-            lecturer.semester = form.cleaned_data['semester']
-            lecturer.coursename = form.cleaned_data['coursename']
+            # lecturer.coursename = form.cleaned_data['coursename']
             lecturer.feedback = form.cleaned_data['feedback']
             lecturer.experience = form.cleaned_data['experience']
             lecturer.professional = form.cleaned_data['professional']
             lecturer.publication = form.cleaned_data['publication']
+            lecturer.semester = form.cleaned_data['semester']
             lecturer.save()  # Save the basic details first
             form.save()
             return redirect('lecturer')  # Redirect to lecturer view after saving
+        else:
+            return HttpResponse("Form is not valid!")
     else:
         form = LecturerRegistration()
-    return render(request, 'admin/lectview.html', {'form': form})
+    return render(request, 'admin/lecturer.html', {'form': form})
 
 def courseDashboard(request):
     courses = Course.objects.all()  # Query all courses from the database
