@@ -63,7 +63,7 @@ def lecturerDashboard(request):
             lecturer.id = form.cleaned_data['id']
             lecturer.lecturername = form.cleaned_data['lecturername']
             lecturer.qualification = form.cleaned_data['qualification']
-            # lecturer.coursename = form.cleaned_data['coursename']
+            lecturer.coursename = form.cleaned_data['coursename']
             lecturer.feedback = form.cleaned_data['feedback']
             lecturer.experience = form.cleaned_data['experience']
             lecturer.professional = form.cleaned_data['professional']

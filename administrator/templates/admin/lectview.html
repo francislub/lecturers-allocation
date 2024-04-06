@@ -40,7 +40,6 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Course Units</th>
-                                    {% comment %} <th scope="col">Semester</th> {% endcomment %}
                                     <th scope="col">Feedback</th>
                                     <th scope="col">Experience</th>
                                     <th scope="col">Professional Certificate</th>
@@ -52,9 +51,7 @@
                                     <tr>
                                         <td>{{ course.id }}</td>
                                         <td>{{ course.coursename }}</td>
-                                        <td>
-                                           <input type="text" class="form-control" name="coursename" value="{{ course.coursename }}">
-                                        </td> 
+                                        <input type="text" class="form-control" name="coursename" value="{{ course.coursename }}" >
                                          <td>
                                             <select class="form-control" name="feedback">
                                                 <option value="">Select</option>
