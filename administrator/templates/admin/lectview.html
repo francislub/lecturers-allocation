@@ -33,7 +33,9 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h2>Courses for {{ semester }}
-                            {% comment %} <input type="text" class="form-control" name="semester" value="{{ semester }}" readonly> {% endcomment %}
+                            <input type="text" name="semester" value="{{ semester }}">
+
+                        {% comment %} <input type="hidden" class="form-control" name="semester" value="{{ semester }}" > {% endcomment %}
                         </h2>
                         <table class="table table-bordered">
                             <thead>
@@ -51,6 +53,7 @@
                                     <tr>
                                         <td>{{ course.id }}</td>
                                         <td>{{ course.coursename }}</td>
+                                        <input type="text" class="form-control" name="coursename" value="{{ course.coursename }}">
                                         <td>
                                             <select class="form-control" name="feedback">
                                                 <option value="">Select</option>
