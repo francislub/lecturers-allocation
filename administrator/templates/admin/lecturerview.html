@@ -1,0 +1,61 @@
+{% extends 'root.html' %}
+{% load static %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container-fluid">
+    <!-- begin row -->
+    {% comment %} <div class="row"> {% endcomment %}
+        <div class="col-md-12 m-b-30">
+                    <h2>View Lecturer's Details</h2>
+                        <div class="col-6">
+                            <label for="exampleInputid" class="form-label"><h4>Lecturer ID:        <span style="color: red; margin-left: 40px;">{{ form.instance.id }}</span></h4></label>
+                        </div>
+                        <div class="col-6">
+                            <label for="exampleInputName" class="form-label"><h4>Lecturer's Name:  <span style="color: red;">{{ form.instance.lecturername }}</span></h4></label>
+                        </div>
+                        <div class="col-6">
+                            <label for="exampleInputName" class="form-label"><h4>Qualification:    <span style="color: red; margin-left: 30px;">{{ form.instance.qualification }}</span></h4></label>
+                        </div> 
+                        <div class="col-6">
+                            <label for="exampleInputName" class="form-label"><h4>Semester:    <span style="color: red; margin-left: 50px;">{{ form.instance.semester }}</span></h4></label>
+                        </div>                    
+                    </div>
+                    <div class="row" >
+                        <div class="col-3">
+                            <h5>Course Units</h5>
+                            {{ form.instance.coursename }}
+
+                        </div>
+                        <div class="col-2">
+                            <h5>Feedback</h5>
+                            {{ form.instance.feedback }}
+
+                        </div>
+                        <div class="col-2">
+                            <h5>Experience</h5>
+                            {{ form.instance.experience }}
+
+                        </div>
+                        <div class="col-3">
+                            <h5>Professional Certificate</h5>
+                            {{ form.instance.professional }}
+
+                        </div>
+                        <div class="col-2">
+                            <h5>Publication</h5>
+                            {{ form.instance.publication }}
+
+                        </div>
+                    </div>
+                    <br><br>
+                <div class="col-12">
+                    <a class="btn btn-lg btn-secondary" href="{% url 'lecturer' %}" role="button">Close</a>
+                </div>
+            </div>
+            
+           </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

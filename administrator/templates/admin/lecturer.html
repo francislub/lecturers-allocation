@@ -40,7 +40,7 @@
                               {% comment %} <td>{{ lecturer.semester }}</td> {% endcomment %}
                               <td>
                                   <!-- Add your action buttons here -->
-                                  <a href="" class="btn btn-primary">View</a>
+                                  <a href="{% url 'view_lecturer' lecturer.id %}" class="btn btn-primary">View</a>
                                   <a href="{% url 'update_lecturer' lecturer.id %}" class="btn btn-warning">Update</a>
                                   <a href="{% url 'delete_lecturer' lecturer.id %}" class="btn btn-danger">Delete</a>
                                   

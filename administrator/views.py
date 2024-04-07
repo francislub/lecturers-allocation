@@ -125,6 +125,17 @@ def update_lecturer(request, lecturer_id):
         form = LecturerRegistration(instance=lecturer)
     return render(request, 'admin/lecturerupdate.html', {'form': form})
 
+def view_lecturer(request, lecturer_id):
+    lecturer = Lecturer.objects.get(pk=lecturer_id)
+    if request.method == 'POST':
+        form = LecturerRegistration(request.POST, instance=lecturer)
+        if form.is_valid():
+            form.view()
+            return redirect('lecturer')  # Assuming 'courseview' is the URL name for displaying course details
+    else:
+        form = LecturerRegistration(instance=lecturer)
+    return render(request, 'admin/lecturerview.html', {'form': form})
+
 def choicesDashboard(request):
     if request.method == 'POST':
         form = CourseRegistration(request.POST)
