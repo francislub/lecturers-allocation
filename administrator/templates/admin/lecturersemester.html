@@ -6,8 +6,8 @@
     <div class="modal-body" id="approvalModalBody">
         <form id="approvalForm" method="POST" action="{% url 'lecturersemester' %}">
             {% csrf_token %}
-            {{ form|crispy }}
-            {% comment %} <div class="row">
+            {% comment %} {{ form|crispy }} {% endcomment %}
+            <div class="row">
                 <div class="col-1">
                     <label for="semester" class="form-label">Semester</label>
                 </div>
@@ -18,7 +18,7 @@
                     <option value="Second Semester">Second Semester</option>
                     </select>
                 </div>
-            </div> {% endcomment %}
+            </div> 
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">Continue</button>
                 <a class="btn btn-lg btn-secondary" href="{% url 'lecturer' %}" role="button">Cancel</a>

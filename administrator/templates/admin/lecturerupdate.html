@@ -31,7 +31,7 @@
                               <option value="Degree - Masters" {% if form.instance.qualification == 'Degree - Masters' %} selected {% endif %}>Degree - Masters</option>
                               <option value="Degree - Masters - PhD" {% if form.instance.qualification == 'Degree - Masters - PhD' %} selected {% endif %}>Degree - Masters - PhD</option>
                               </select>
-                        </div>
+                        </div>                     
                     </div>
                     <br><br>
                     <div class="row g-3 align-items-center">
@@ -43,36 +43,72 @@
                     {% comment %} </form> {% endcomment %}
                     <br><br>
                     <div class="row">
-                    <div class="col-md-12">
-                        <h2>Courses for {{ semester }}</h2>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Course Units</th>
-                                    <th scope="col">Feedback</th>
-                                    <th scope="col">Experience</th>
-                                    <th scope="col">Professional Certificate</th>
-                                    <th scope="col">Publication</th>
-                                </tr>
-                            </thead>
-                            <tbody id="course_units_body">
-                                {% for course in courses %}
+                        <div class="col-md-12">
+                            <h2>Courses for {{ form.instance.semester }}
+                            <input type="hidden" class="form-control" name="semester" value="{{ form.instance.semester }}" >
+                            </h2>
+                            <table class="table table-bordered">
+                                <thead>
                                     <tr>
-                                        <td>{{ course.id }}</td>
-                                        <td>{{ course.coursename }}</td>
-                                        {% comment %} <td>{{ course.feedback }}</td>
-                                        <td>{{ course.experience }}</td>
-                                        <td>{{ course.professional_certificate }}</td>
-                                        <td>{{ course.publication }}</td> {% endcomment %}
+                                        {% comment %} <th scope="col">#</th> {% endcomment %}
+                                        <th scope="col">Course Units</th>
+                                        <th scope="col">Feedback</th>
+                                        <th scope="col">Experience</th>
+                                        <th scope="col">Professional Certificate</th>
+                                        <th scope="col">Publication</th>
                                     </tr>
-                                {% endfor %}
-                            </tbody>                                     
-                        </table>
+                                </thead>
+                                <tbody id="course_units_body">
+                                    {% for course in courses %}
+                                        <tr>
+                                            {% comment %} <td>{{ course.id }}</td> {% endcomment %}
+                                            <td>{{ form.instance.coursename }}</td>
+                                               <input type="text" class="form-control" name="coursename" id="exampleInputName" value="{{ form.instance.coursename }}">
+                                             <td>
+                                                <select class="form-control" name="feedback">
+                                                    <option value="" {% if form.instance.feedback == '' %} selected {% endif %}>Select</option>
+                                                    <option value="Above 80: Excellent" {% if form.instance.feedback == 'Above 80: Excellent' %} selected {% endif %}>Above 80: Excellent</option>
+                                                    <option value="Between 70-79: Very Good" {% if form.instance.feedback == 'Between 70-79: Very Good' %} selected {% endif %}>Between 70-79: Very Good</option>
+                                                    <option value="Between 60-69: Good" {% if form.instance.feedback == 'Between 60-69: Good' %} selected {% endif %}>Between 60-69: Good</option>
+                                                    <option value="Between 50-59: Fair" {% if form.instance.feedback == 'Between 50-59: Fair' %} selected {% endif %}>Between 50-59: Fair</option>
+                                                    <option value="Below 50: Poor" {% if form.instance.feedback == 'Below 50: Poor' %} selected {% endif %}>Below 50: Poor</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select class="form-control" name="experience">
+                                                    <option value="" {% if form.instance.experience == 'Select' %} selected {% endif %}>Select</option>
+                                                    <option value="0 years" {% if form.instance.experience == '0 years' %} selected {% endif %}>0 years</option>
+                                                    <option value="Between 1-3" {% if form.instance.experience == 'Between 1-3' %} selected {% endif %}>Between 1-3</option>
+                                                    <option value="Between 4-6" {% if form.instance.experience == 'Between 4-6' %} selected {% endif %}>Between 4-6</option>
+                                                    <option value="Between 7-9" {% if form.instance.experience == 'Between 7-9' %} selected {% endif %}>Between 7-9</option>
+                                                    <option value="10 and Above" {% if form.instance.experience == '10 and Above' %} selected {% endif %}>10 and Above</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select class="form-control" name="professional">
+                                                    <option value="" {% if form.instance.professional == 'Select' %} selected {% endif %}>Select</option>
+                                                    <option value="Yes" {% if form.instance.professional == 'Yes' %} selected {% endif %}>Yes</option>
+                                                    <option value="No" {% if form.instance.professional == 'No' %} selected {% endif %}>No</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select class="form-control" name="publication">
+                                                    <option value="" {% if form.instance.publication == 'Select' %} selected {% endif %}>Select</option>
+                                                    <option value="1 to 2 Papers" {% if form.instance.publication == '1 to 2 Papers' %} selected {% endif %}>1 to 2 Papers</option>
+                                                    <option value="3 to 4 Papers" {% if form.instance.publication == '3 to 4 Papers' %} selected {% endif %}>3 to 4 Papers</option>
+                                                    <option value="5 to 6 Papers" {% if form.instance.publication == '5 to 6 Papers' %} selected {% endif %}>5 to 6 Papers</option>
+                                                    <option value="7 to 8 Papers" {% if form.instance.publication == '7 to 8 Papers' %} selected {% endif %}>7 to 8 Papers</option>
+                                                    <option value="9 and Above" {% if form.instance.publication == '9 and Above' %} selected {% endif %}>9 and Above</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>                                     
+                            </table>
+                        </div>
                     </div>
-                </div>
                 <div class="col-12">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
                     <a class="btn btn-lg btn-secondary" href="{% url 'lecturersemester' %}" role="button">Back</a>
                     <a class="btn btn-lg btn-secondary" href="{% url 'lecturer' %}" role="button">Cancel</a>
                 </div>

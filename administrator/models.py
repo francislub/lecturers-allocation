@@ -12,7 +12,7 @@ class Course(models.Model):
     
 class Lecturer(models.Model):
     # Existing fields
-    id = models.CharField(primary_key=True, max_length=100)
+    id = models.CharField(primary_key=True, max_length=200)
     lecturername = models.CharField(max_length=200, null=True, blank=True)
     qualification = models.CharField(max_length=255, null=True, blank=True)
     semester = models.CharField(max_length=255, null=True, blank=True)
