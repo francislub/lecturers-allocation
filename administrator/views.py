@@ -84,7 +84,15 @@ def lecturerDashboard(request):
             semester = form.cleaned_data['semester']
             for course in form.cleaned_data['coursename']:  # Assuming 'courses' is a field in your form representing multiple course selections
                 lecturer = Lecturer.objects.create(
-                    
+                    id=form.cleaned_data['id'],
+                    lecturername=form.cleaned_data['lecturername'],
+                    qualification=form.cleaned_data['qualification'],
+                    coursename=course,
+                    feedback=form.cleaned_data['feedback'],
+                    experience=form.cleaned_data['experience'],
+                    professional=form.cleaned_data['professional'],
+                    publication=form.cleaned_data['publication'],
+                    semester=semester
                 )
             return redirect('lecturer')  # Redirect to lecturer view after saving
         else:
