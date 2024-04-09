@@ -1,0 +1,59 @@
+{% extends 'root.html' %}
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container-fluid">
+    <!-- begin row -->
+    {% comment %} <div class="row"> {% endcomment %}
+        <div class="col-md-12 m-b-30">
+            <!-- begin page title -->
+
+            <form method="POST" action="{% url 'lectview' %}">
+                {% csrf_token %}
+                
+                {% comment %} {{ form|crispy}} {% endcomment %}
+                <div class="row">
+                    <div class="col-10">
+                      <h2>View Lecturer's Details</h2>
+                    </div>
+                    <div class="col-2">
+                      <a class="btn  btn-primary"  href="{% url "lecturersemester" %}"  role="button">Add Lecturer</a>
+                    </div>
+                </div>
+                {% comment %} <div class="row"> {% endcomment %}
+                  <div class="display_table">
+                      <table class='table table-bordered'>
+                              <tr>
+                                <th>Lecturer's ID</th>
+                                <th>Lecturer's Name</th>
+                                <th>Qualification</th>
+                                <th>Actions</th>
+                              </tr>
+                              {% for lecturer in lecturers %}
+                              <tr>
+                              <td>{{ lecturer.id }}</td>
+                              <td>{{ lecturer.lecturername }}</td>
+                              <td>{{ lecturer.qualification }}</td>
+                              {% comment %} <td>{{ lecturer.publication }}</td> {% endcomment %}
+                              {% comment %} <td>{{ lecturer.semester }}</td> {% endcomment %}
+                              <td>
+                                  <!-- Add your action buttons here -->
+                                  <a href="{% url 'view_lecturer' lecturer.id %}" class="btn btn-primary">View</a>
+                                  <a href="{% url 'update_lecturer' lecturer.id %}" class="btn btn-warning">Update</a>
+                                  <a href="{% url 'delete_lecturer' lecturer.id %}" class="btn btn-danger">Delete</a>
+                                  
+                              </td>
+                            </tr>
+                        {% endfor %}
+                      </table>
+                {% comment %} </div> {% endcomment %}
+            </form>
+
+                
+                  </table>
+                
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
