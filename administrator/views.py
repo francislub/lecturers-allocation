@@ -54,29 +54,45 @@ def delete_course(request, course_id):
     # Optionally, you can render a confirmation page for deletion
     return render(request, 'admin/confirm_delete.html', {'course': course})
 
+# def lecturerDashboard(request):
+#     if request.method == 'POST':
+#         # courses = Course.
+#         form = LecturerRegistration(request.POST)
+#         if form.is_valid():
+#             lecturer = form.save(commit=False)
+#             lecturer.id = form.cleaned_data['id']
+#             lecturer.lecturername = form.cleaned_data['lecturername']
+#             lecturer.qualification = form.cleaned_data['qualification']
+#             lecturer.coursename = form.cleaned_data['coursename']
+#             lecturer.feedback = form.cleaned_data['feedback']
+#             lecturer.experience = form.cleaned_data['experience']
+#             lecturer.professional = form.cleaned_data['professional']
+#             lecturer.publication = form.cleaned_data['publication']
+#             lecturer.semester = form.cleaned_data['semester']
+#             lecturer.save()  # Save the basic details first
+#             form.save()
+#             return redirect('lecturer')  # Redirect to lecturer view after saving
+#         else:
+#             return HttpResponse("Form is not valid!")
+#     else:
+#         form = LecturerRegistration()
+#     return render(request, 'admin/lecturer.html', {'form': form})
 def lecturerDashboard(request):
     if request.method == 'POST':
-        # courses = Course.
         form = LecturerRegistration(request.POST)
         if form.is_valid():
-            lecturer = form.save(commit=False)
-            lecturer.id = form.cleaned_data['id']
-            lecturer.lecturername = form.cleaned_data['lecturername']
-            lecturer.qualification = form.cleaned_data['qualification']
-            lecturer.coursename = form.cleaned_data['coursename']
-            lecturer.feedback = form.cleaned_data['feedback']
-            lecturer.experience = form.cleaned_data['experience']
-            lecturer.professional = form.cleaned_data['professional']
-            lecturer.publication = form.cleaned_data['publication']
-            lecturer.semester = form.cleaned_data['semester']
-            lecturer.save()  # Save the basic details first
-            form.save()
+            semester = form.cleaned_data['semester']
+            for course in form.cleaned_data['coursename']:  # Assuming 'courses' is a field in your form representing multiple course selections
+                lecturer = Lecturer.objects.create(
+                    
+                )
             return redirect('lecturer')  # Redirect to lecturer view after saving
         else:
             return HttpResponse("Form is not valid!")
     else:
         form = LecturerRegistration()
     return render(request, 'admin/lecturer.html', {'form': form})
+
 
 def courseDashboard(request):
     courses = Course.objects.all()  # Query all courses from the database
