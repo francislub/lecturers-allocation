@@ -1,5 +1,5 @@
 from django.db import models
-from account.models import CustomUser, Department
+# from account.models import CustomUser, Department
     
 class Lecturer(models.Model):
     # Existing fields
