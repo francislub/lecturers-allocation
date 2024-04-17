@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, reverse
 from .email_backend import EmailBackend
 from django.contrib import messages
-from .forms import CustomUserForm, DepartmentForm
-from django.contrib.auth import login, logout
+from .forms import CustomUserForm, DepartmentForm, SignUpForm
+from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 
 def account_login(request):
@@ -49,6 +49,24 @@ def account_register(request):
             messages.error(request, "Provided data failed validation")
             # return account_login(request)
     return render(request, "auth/reg.html", context)
+
+def register_user(request):
+	if request.method == 'POST':
+		form = SignUpForm(request.POST)
+		if form.is_valid():
+			form.save()
+			# Authenticate and login
+			username = form.cleaned_data['username']
+			password = form.cleaned_data['password1']
+			user = authenticate(username=username, password=password)
+			login(request, user)
+			messages.success(request, "You Have Successfully Registered! Welcome!")
+			return redirect('home')
+	else:
+		form = SignUpForm()
+		return render(request, 'register.html', {'form':form})
+
+	return render(request, 'register.html', {'form':form})
 
 
 def account_logout(request):
