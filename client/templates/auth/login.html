@@ -49,14 +49,14 @@
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="form-group">
-                                                        <label class="control-label"></label>
-                                                        <input type="text" class="form-control" placeholder="Username" />
+                                                        <label class="control-label">Email</label>
+                                                        <input type="email" class="form-control" name="email" placeholder="Email" required/>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <label class="control-label">Password*</label>
-                                                        <input type="password" class="form-control" placeholder="Password" />
+                                                        <input type="password" class="form-control" name="password" placeholder="Password" required/>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
@@ -76,7 +76,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="col-12  mt-3">
-                                                    <p>Don't have an account ?<a href="{% url 'account_register' %}"> Sign Up</a></p>
+                                                    <p>Don't have an account ?<a href="{% url 'register' %}"> Sign Up</a></p>
                                                 </div>
                                             </div>
                                         </form>

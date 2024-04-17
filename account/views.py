@@ -5,32 +5,32 @@ from .forms import CustomUserForm, DepartmentForm, SignUpForm
 from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 
-def account_login(request):
-    # if request.user.is_authenticated:
-    #     if user.user_type == '1':
-    #         return redirect(reverse("adminDashboard"))
-    #     elif user.user_type == '2':
-    #         return redirect(reverse("staffDashboard"))
-    #     else:
-    #         return redirect(reverse("cashierDashboard"))
+# def account_login(request):
+#     # if request.user.is_authenticated:
+#     #     if user.user_type == '1':
+#     #         return redirect(reverse("adminDashboard"))
+#     #     elif user.user_type == '2':
+#     #         return redirect(reverse("staffDashboard"))
+#     #     else:
+#     #         return redirect(reverse("cashierDashboard"))
 
-    # context = {}
-    if request.method == 'POST':
-        user = EmailBackend.authenticate(request, username=request.POST.get(
-            'email'), password=request.POST.get('password'))
-        if user != None:
-            login(request, user)
-            if user.user_type == '1':
-                return redirect(reverse("adminDashboard"))
-            elif user.user_type == '2':
-                return redirect(reverse("staffDashboard"))
-            else:
-                return redirect(reverse("cashierDashboard"))
-        else:
-            messages.error(request, "Invalid details")
-            return redirect("adminDashboard")
+#     # context = {}
+#     if request.method == 'POST':
+#         user = EmailBackend.authenticate(request, username=request.POST.get(
+#             'email'), password=request.POST.get('password'))
+#         if user != None:
+#             login(request, user)
+#             if user.user_type == '1':
+#                 return redirect(reverse("adminDashboard"))
+#             elif user.user_type == '2':
+#                 return redirect(reverse("staffDashboard"))
+#             else:
+#                 return redirect(reverse("cashierDashboard"))
+#         else:
+#             messages.error(request, "Invalid details")
+#             return redirect("adminDashboard")
 
-    return render(request, "auth/login.html")
+#     return render(request, "auth/login.html")
 
 
 # def account_register(request):
@@ -50,6 +50,24 @@ def account_login(request):
 #             # return account_login(request)
 #     return render(request, "auth/reg.html", context)
 
+def login(request):
+	# Check to see if logging in
+	if request.method == 'POST':
+		email = request.POST['email']
+		password = request.POST['password']
+		# Authenticate
+		user = authenticate(request, email=email, password=password)
+		if user is not None:
+			login(request, user)
+			messages.success(request, "You Have Been Logged In!")
+			return redirect('adminDashboard')
+		else:
+			messages.success(request, "There Was An Error Logging In, Please Try Again...")
+			return redirect('adminDashboard')
+	else:
+		return render(request, 'auth/login.html')
+
+
 def register_user(request):
 	if request.method == 'POST':
 		form = SignUpForm(request.POST)
@@ -61,7 +79,7 @@ def register_user(request):
 			user = authenticate(email=email, password=password)
 			login(request, user)
 			messages.success(request, "You Have Successfully Registered! Welcome!")
-			return redirect('/administrator')
+			return redirect('adminDashboard')
 	else:
 		form = SignUpForm()
 		return render(request, 'auth/reg.html', {'form':form})
