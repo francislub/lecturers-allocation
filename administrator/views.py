@@ -3,7 +3,7 @@ from .models import Course
 # from client.models import Voter, Position, Candidate, Votes
 #from account.models import Course
 from administrator.models import Course,Lecturer
-from account.forms import CustomUserForm
+# from account.forms import CustomUserForm
 from .forms import SemesterForm
 
 
