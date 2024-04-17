@@ -64,7 +64,7 @@ def login(request):
 			return redirect('adminDashboard')
 		else:
 			messages.success(request, "There Was An Error Logging In, Please Try Again...")
-			return redirect('adminDashboard')
+			return redirect('login')
 	else:
 		return render(request, 'auth/login.html')
 
