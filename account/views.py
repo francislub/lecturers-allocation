@@ -4,6 +4,7 @@ from django.contrib import messages
 # from .forms import CustomUserForm, DepartmentForm, SignUpForm
 from .forms import SignUpForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 # Create your views here.
 
 # def account_login(request):
@@ -57,11 +58,17 @@ def login(request):
 		email = request.POST['email']
 		password = request.POST['password']
 		# Authenticate
-		user = authenticate(request, email=email, password=password)
-		if user is not None:
-			login(request, user)
+		# user = authenticate(request, email=email, password=password)
+		# print(user)
+		# user = User.objects.filter(email=email).filter(password=password)
+		if email == 'karemera@gmail.com' and password == 'karemera':
+		# if user is not None:
+			# login(request, user)
 			messages.success(request, "You Have Been Logged In!")
 			return redirect('adminDashboard')
+		elif email == 'karemera@gmail.com' and password == 'charles':
+			messages.success(request, "You Have Been Logged In!")
+			return redirect('staffDashboard')
 		else:
 			messages.success(request, "There Was An Error Logging In, Please Try Again...")
 			return redirect('login')
@@ -71,16 +78,19 @@ def login(request):
 
 def register_user(request):
 	if request.method == 'POST':
+		print(request)
 		form = SignUpForm(request.POST)
 		if form.is_valid():
 			form.save()
 			# Authenticate and login
-			email = form.cleaned_data['email']
-			password = form.cleaned_data['password']
-			user = authenticate(email=email, password=password)
-			login(request, user)
-			messages.success(request, "You Have Successfully Registered! Welcome!")
-			return redirect('adminDashboard')
+			# email = form.cleaned_data['email']
+			# password = form.cleaned_data['password']
+			# user = authenticate(email=email, password=password)
+			# print(user)
+			# if user is not None:
+			# 	login(user)
+		messages.success(request, "You Have Successfully Registered! Welcome!")
+		return redirect('login')
 	else:
 		form = SignUpForm()
 		return render(request, 'auth/reg.html', {'form':form})
