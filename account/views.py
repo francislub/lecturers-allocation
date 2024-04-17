@@ -33,22 +33,22 @@ def account_login(request):
     return render(request, "auth/login.html")
 
 
-def account_register(request):
-    userForm = CustomUserForm(request.POST or None)
-    context = {
-        'form1': userForm,
-    }
-    if request.method == 'POST':
-        if userForm.is_valid():
-            user = userForm.save(commit=False)
-            user.department = userForm.cleaned_data['department']
-            user.save()
-            messages.success(request, "Account created. You can login now!")
-            return redirect(reverse('account_login'))
-        else:
-            messages.error(request, "Provided data failed validation")
-            # return account_login(request)
-    return render(request, "auth/reg.html", context)
+# def account_register(request):
+#     userForm = CustomUserForm(request.POST or None)
+#     context = {
+#         'form1': userForm,
+#     }
+#     if request.method == 'POST':
+#         if userForm.is_valid():
+#             user = userForm.save(commit=False)
+#             user.department = userForm.cleaned_data['department']
+#             user.save()
+#             messages.success(request, "Account created. You can login now!")
+#             return redirect(reverse('account_login'))
+#         else:
+#             messages.error(request, "Provided data failed validation")
+#             # return account_login(request)
+#     return render(request, "auth/reg.html", context)
 
 def register_user(request):
 	if request.method == 'POST':
@@ -56,17 +56,17 @@ def register_user(request):
 		if form.is_valid():
 			form.save()
 			# Authenticate and login
-			username = form.cleaned_data['username']
-			password = form.cleaned_data['password1']
-			user = authenticate(username=username, password=password)
+			email = form.cleaned_data['email']
+			password = form.cleaned_data['password']
+			user = authenticate(email=email, password=password)
 			login(request, user)
 			messages.success(request, "You Have Successfully Registered! Welcome!")
-			return redirect('home')
+			return redirect('/administrator')
 	else:
 		form = SignUpForm()
-		return render(request, 'register.html', {'form':form})
+		return render(request, 'auth/reg.html', {'form':form})
 
-	return render(request, 'register.html', {'form':form})
+	return render(request, 'auth/reg.html', {'form':form})
 
 
 def account_logout(request):
