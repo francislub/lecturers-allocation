@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, reverse
-from .forms import LecturerForm
+from .forms import LecturerForm, UserRegistrationForm
 from django.contrib import messages
 
 # Create your views here.
@@ -38,4 +38,15 @@ def choices_form(request):
         messages.error(request, "Something went wrong! Please try again")
         form = LecturerForm()
     return render(request, 'client/choices_form.html', {'form': form})
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Registration successful! You can now log in.')
+            return redirect('login')  # Redirect to the login page after successful registration
+    else:
+        form = UserRegistrationForm()
+    return render(request, 'auth/reg.html', {'form': form})
 

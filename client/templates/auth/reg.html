@@ -44,24 +44,30 @@
                                     <div class="register p-5">
                                         <h1 class="mb-2">Bugema University</h1>
                                         <p>Welcome, Please create your account.</p>
+                                        {% comment %} {% if messages %}
+                                            {% for message in messages %}
+                                                <div class="alert alert-success">
+                                                    {{ message }}
+                                                </div>
+                                            {% endfor %}
+                                        {% endif %} {% endcomment %}
                                         <form action="{% url 'acc_register' %}" class="mt-2 mt-sm-5" method="POST">
                                             {% csrf_token %}
                                             <div class="row">
-                                                <!-- {% comment %} 
                                                 <div class="col-12 col-sm-6">
                                                     <div class="form-group">
-                                                        <label class="control-label">First Name*</label>
-                                                        <input type="text" class="form-control" placeholder="First Name" />
+                                                        <label for="exampleInputFirstName" class="control-label">First Name</label>
+                                                        <input type="text" class="form-control" name="firstname" id="exampleInputFirstName" placeholder="First Name" />
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-sm-6">
                                                     <div class="form-group">
-                                                        <label class="control-label">Last Name*</label>
-                                                        <input type="text" class="form-control" placeholder="Last Name" />
+                                                        <label for="exampleInputLastName" class="form-label">Last Name</label>
+                                                        <input type="text" class="form-control" name="lastname" id="exampleInputLastName" placeholder="Last Name" />
                                                     </div>
                                                 </div> 
-                                                {% endcomment %} -->
-                                                <div class="col-12">
+                                                
+                                                 {% comment %} <div class="col-12">
                                                     {% for field in form  %}
                                                         <div class="form-group has-feedback">
                                                             {{field.errors}}
@@ -69,22 +75,28 @@
                                                             {{field}}
                                                         </div>
                                                     {% endfor %}
+                                                  </div> {% endcomment %}
+                                                <div class="col-12">
+                                                    <label for="category" class="form-label">Category</label>
+                                                    <select class="form-control" required name="category" id="category">
+                                                    <option value="">Select Category</option>
+                                                    <option value="Lecturer">Lecturer</option>
+                                                    <option value="Administrator">Administrator</option>
+                                                    </select>
                                                 </div>
-                                                <!-- {% comment %} 
                                                 <div class="col-12">
                                                     <div class="form-group">
-                                                        <label class="control-label">Username*</label>
-                                                        <input type="text" class="form-control" placeholder="Username" />
+                                                        <label for="exampleInputEmail" class="form-label">Email</label>
+                                                        <input type="email" class="form-control" name="email" id="exampleInputEmail" placeholder="Enter Email" />
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-group">
-                                                        <label class="control-label">Password*</label>
-                                                        <input type="password" class="form-control" placeholder="Password" />
+                                                        <label for="exampleInputPassword" class="form-label">Password</label>
+                                                        <input type="password" class="form-control" name="password" id="exampleInputPassword" placeholder="Enter Password" />
                                                     </div>
                                                 </div> 
-                                                {% endcomment %}
-                                                {% comment %} 
+                                                
                                                 <div class="col-12">
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" id="gridCheck">
@@ -93,7 +105,7 @@
                                                         </label>
                                                     </div>
                                                 </div> 
-                                                {% endcomment %} -->
+                                                
                                                 <div class="col-12 mt-3">
                                                     <button type="submit" name="reg"
                                                         onclick="return confirm('Are you sure the details provided are correct?\nYou will NOT be allowed to make modifications.')"
