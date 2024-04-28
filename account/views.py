@@ -57,13 +57,7 @@ from django.contrib.auth.models import User
 # 	if request.method == 'POST':
 # 		email = request.POST['email']
 # 		password = request.POST['password']
-# 		# Authenticate
-# 		# user = authenticate(request, email=email, password=password)
-# 		# print(user)
-# 		# user = User.objects.filter(email=email).filter(password=password)
 # 		if email == 'karemera@gmail.com' and password == 'karemera':
-# 		# if user is not None:
-# 			# login(request, user)
 # 			messages.success(request, "You Have Been Logged In!")
 # 			return redirect('adminDashboard')
 # 		elif email == 'karemera@gmail.com' and password == 'charles':
@@ -78,21 +72,21 @@ def login(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
-        category = request.POST.get('category')
-
-        if email and password and category:  # Check if all required fields are present
+        # category = "Administrator"  # Assuming the category is always "Administrator" for this form
+        
+        if email and password:  # Check if email and password are provided
             user = authenticate(request, email=email, password=password)
-            if user is not None and user.category == category:
+            if user is not None and user.category == "Administrator":
                 login(request, user)
-                if category == 'Administrator':
-                    return redirect('adminDashboard')
-                elif category == 'Lecturer':
-                    return redirect('staffDashboard')
+                return redirect('adminDashboard')  # Redirect to admin dashboard
+            elif user is not None and user.category == "Lecturer":
+                login(request, user)
+                return redirect('staffDashboard')  # Redirect to lecturer dashboard
             else:
-                messages.error(request, "Invalid credentials or category.")
+                messages.error(request, "Incorrect login details.")
         else:
-            messages.error(request, "Please provide email, password, and category.")
-
+            messages.error(request, "Please provide email and password.")
+    
     return render(request, 'auth/login.html')
 
 def register_user(request):
@@ -141,7 +135,7 @@ def account_logout(request):
         messages.error(
             request, "You need to be logged in to perform this action")
 
-    return redirect(reverse("account_login"))
+    return redirect(reverse("login"))
 
 def lock(request):
     return render(request, 'auth/lock_screen.html')
