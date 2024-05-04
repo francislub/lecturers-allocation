@@ -1,5 +1,6 @@
 from django.shortcuts import render, reverse, redirect, get_object_or_404
 from .models import Course
+from django.db import IntegrityError
 # from client.models import Voter, Position, Candidate, Votes
 #from account.models import Course
 from administrator.models import Course,Lecturer
@@ -54,52 +55,6 @@ def delete_course(request, course_id):
     # Optionally, you can render a confirmation page for deletion
     return render(request, 'admin/confirm_delete.html', {'course': course})
 
-# def lecturerDashboard(request):
-#     if request.method == 'POST':
-#         # courses = Course.
-#         form = LecturerRegistration(request.POST)
-#         if form.is_valid():
-#             lecturer = form.save(commit=False)
-#             lecturer.id = form.cleaned_data['id']
-#             lecturer.lecturername = form.cleaned_data['lecturername']
-#             lecturer.qualification = form.cleaned_data['qualification']
-#             lecturer.coursename = form.cleaned_data['coursename']
-#             lecturer.feedback = form.cleaned_data['feedback']
-#             lecturer.experience = form.cleaned_data['experience']
-#             lecturer.professional = form.cleaned_data['professional']
-#             lecturer.publication = form.cleaned_data['publication']
-#             lecturer.semester = form.cleaned_data['semester']
-#             lecturer.save()  # Save the basic details first
-#             form.save()
-#             return redirect('lecturer')  # Redirect to lecturer view after saving
-#         else:
-#             return HttpResponse("Form is not valid!")
-#     else:
-#         form = LecturerRegistration()
-#     return render(request, 'admin/lecturer.html', {'form': form})
-# def lecturerDashboard(request):
-#     if request.method == 'POST':
-#         form = LecturerRegistration(request.POST)
-#         if form.is_valid():
-#             semester = form.cleaned_data['semester']
-#             for course in form.cleaned_data['coursename']:  # Assuming 'courses' is a field in your form representing multiple course selections
-#                 lecturer = Lecturer.objects.create(
-#                     id=form.cleaned_data['id'],
-#                     lecturername=form.cleaned_data['lecturername'],
-#                     qualification=form.cleaned_data['qualification'],
-#                     coursename=course,
-#                     feedback=form.cleaned_data['feedback'],
-#                     experience=form.cleaned_data['experience'],
-#                     professional=form.cleaned_data['professional'],
-#                     publication=form.cleaned_data['publication'],
-#                     semester=semester
-#                 )
-#             return redirect('lecturer')  # Redirect to lecturer view after saving
-#         else:
-#             return HttpResponse("Form is not valid!")
-#     else:
-#         form = LecturerRegistration()
-#     return render(request, 'admin/lecturer.html', {'form': form})
 def lecturerDashboard(request):
     if request.method == 'POST':
         form = LecturerRegistration(request.POST)
@@ -130,11 +85,42 @@ def lecturerDashboard(request):
         form = LecturerRegistration()
     # return render(request, 'admin/lecturer.html', {'form': form})
     return redirect('lecturer')
+# def lecturerDashboard(request):
+#     if request.method == 'POST':
+#         form = LecturerRegistration(request.POST)
+#         if form.is_valid():
+#             semester = form.cleaned_data['semester']
+#             courses = form.cleaned_data['courses']
+#             lecturer_id = form.cleaned_data['id']
+#             lecturer_name = form.cleaned_data['lecturername']
+#             qualification = form.cleaned_data['qualification']
+#             for course in courses:
+#                 feedback = form.cleaned_data['feedback']
+#                 experience = form.cleaned_data['experience']
+#                 professional = form.cleaned_data['professional']
+#                 publication = form.cleaned_data['publication']
+                
+#                 lecturer = Lecturer.objects.create(
+#                     id=lecturer_id,
+#                     lecturername=lecturer_name,
+#                     qualification=qualification,
+#                     semester=semester,
+#                     course=course,
+#                     feedback=feedback,
+#                     experience=experience,
+#                     professional=professional,
+#                     publication=publication
+#                 )
+#                 # You can perform additional operations or validation here if needed
 
+#             return redirect('lecturer')
+#     else:
+#         form = LecturerRegistration()
+#     return redirect('lecturer')
 
-def courseDashboard(request):
-    courses = Course.objects.all()  # Query all courses from the database
-    return render(request, 'admin/course.html', {'courses': courses})
+# def courseDashboard(request):
+#     courses = Course.objects.all()  # Query all courses from the database
+#     return render(request, 'admin/course.html', {'courses': courses})
 
 def get_courses(request):
     semester = request.GET.get('semester')
