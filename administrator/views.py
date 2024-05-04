@@ -113,7 +113,7 @@ def lecturerDashboard(request):
                         id=id,
                         lecturername=form.cleaned_data['lecturername'],
                         qualification=form.cleaned_data['qualification'],
-                        coursename=course,
+                        coursename=form.cleaned_data['coursename'],
                         feedback=form.cleaned_data['feedback'],
                         experience=form.cleaned_data['experience'],
                         professional=form.cleaned_data['professional'],
@@ -121,13 +121,15 @@ def lecturerDashboard(request):
                         semester=semester
                     )
                 else:
-                    return HttpResponse('Error: Lecturer with this ID already exists')
+                    form = LecturerRegistration()
+                return redirect('lecturer')
             return HttpResponse('Lecturer(s) created successfully')
         else:
-            return HttpResponse('Form is not valid!')
+            return HttpResponse('Please enter a different lecturer id!')
     else:
         form = LecturerRegistration()
-    return render(request, 'admin/lecturer.html', {'form': form})
+    # return render(request, 'admin/lecturer.html', {'form': form})
+    return redirect('lecturer')
 
 
 def courseDashboard(request):
